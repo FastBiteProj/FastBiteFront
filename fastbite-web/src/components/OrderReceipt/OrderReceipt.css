@@ -1,0 +1,140 @@
+.OrderReceipt {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  max-width: 500px;
+  margin: 0 auto;
+  color: #1a1a1a;
+  font-family: 'Poppins', sans-serif;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.OrderReceipt__header {
+  text-align: center;
+  margin-bottom: 2rem;
+  border-bottom: 2px dashed #1a1a1a;
+  padding-bottom: 1.5rem;
+  position: relative;
+}
+
+.OrderReceipt__header h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.OrderReceipt__datetime {
+  color: #4a4a4a;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.OrderReceipt__content {
+  padding: 1rem 0;
+}
+
+.OrderReceipt__table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+.OrderReceipt__table th {
+  padding: 1rem;
+  text-align: left;
+  background-color: #1a1a1a;
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.OrderReceipt__table th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.OrderReceipt__table th:last-child {
+  border-top-right-radius: 8px;
+}
+
+.OrderReceipt__table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+  color: #1a1a1a;
+  font-weight: 400;
+}
+
+.OrderReceipt__table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.OrderReceipt__total-label {
+  text-align: right;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-right: 2rem !important;
+}
+
+.OrderReceipt__total-amount {
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 1.1rem;
+}
+
+.OrderReceipt__footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px dashed #1a1a1a;
+}
+
+.OrderReceipt__footer p {
+  color: #1a1a1a;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0.5rem 0;
+}
+
+.OrderReceipt__order-id {
+  color: #4a4a4a;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Стилизация для мобильных устройств */
+@media (max-width: 768px) {
+  .OrderReceipt {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .OrderReceipt__header h2 {
+    font-size: 1.5rem;
+  }
+
+  .OrderReceipt__table th,
+  .OrderReceipt__table td {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+} 

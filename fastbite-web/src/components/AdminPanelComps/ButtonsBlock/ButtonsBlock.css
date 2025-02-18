@@ -1,0 +1,45 @@
+.buttons-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px; 
+  padding: 20px;
+  font-family: "Ubuntu Mono", sans-serif;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-block {
+  width: 200px;
+  padding: 10px 15px;
+  font-family: "Ubuntu Mono", sans-serif;
+  font-size: 18px;
+  border-radius: 7px;
+  color: black;
+  border: 2px solid black;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.btn-block:hover {
+  color: black;
+  transform: scale(1.03);
+}
+
+.btn-block:active {
+  transform: scale(0.95);
+}
+
+.add-dish {
+}
+
+.add-dish:hover {
+}
+
+.add-reservation {
+}
+
+.add-reservation:hover {
+}

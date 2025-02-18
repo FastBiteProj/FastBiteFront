@@ -1,0 +1,144 @@
+.table-canvas-container {
+    width: 100%;
+    height: 450px;
+
+}
+  
+  .table-canvas {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 450px;
+    cursor: pointer;
+
+}
+  
+  .table {
+    position: absolute;
+    background-color: #FFE4B5;
+    border: 2px solid #DEB887;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+
+  }
+  
+  .chair {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #808080;
+    border-radius: 50%;
+  }
+  
+  .table-small {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .table-big {
+    width: 120px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .table-small .chair-top { top: -25px; left: 30px; }
+  .table-small .chair-right { right: -25px; top: 30px; }
+  .table-small .chair-bottom { bottom: -25px; left: 30px; }
+  .table-small .chair-left { left: -25px; top: 30px; }
+  
+  .table-big .chair-top-left { top: -25px; left: 20px; }
+  .table-big .chair-top-right { top: -25px; right: 20px; }
+  .table-big .chair-right { right: -25px; top: 30px; }
+  .table-big .chair-bottom-right { bottom: -25px; right: 20px; }
+  .table-big .chair-bottom-left { bottom: -25px; left: 20px; }
+  .table-big .chair-left { left: -25px; top: 30px; }
+  
+  .table-canvas.blurred {
+    filter: blur(5px);
+    cursor: not-allowed;
+  }
+  
+  .table-tooltips {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .table-tooltip {
+    display: none;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    min-width: 220px;
+    backdrop-filter: blur(10px);
+  }
+  
+  .table-tooltip.visible {
+    display: block;
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .table-tooltip-title {
+    font-weight: 600;
+    color: #2C3E50;
+    display: block;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .table-tooltip-times {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .table-tooltip-times li {
+    margin: 6px 0;
+    padding: 8px 12px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #666;
+    transition: background-color 0.2s;
+  }
+  
+  .table-tooltip-times li:hover {
+    background: #f1f3f5;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 18px;
+    color: #2C3E50;
+    backdrop-filter: blur(4px);
+  }
+  
+  .error-message {
+    color: red;
+    padding: 20px;
+    text-align: center;
+  } 

@@ -1,0 +1,296 @@
+{
+  "home": {
+    "tagline": "Sizin mükəmməl qəlyanaltınız",
+    "whyChoose": "Nə üçün FastBite seçməlisiniz?",
+    "description": "FastBite, yemək təcrübənizi sadələşdirmək üçün hazırlanıb. Tətbiqimizlə aşağıdakılara nail ola bilərsiniz:",
+    "features": {
+      "browseMenu": "Menyuya baxın və sevdiyiniz yeməkləri tapın.",
+      "reserveTable": "İstədiyiniz vaxtda masa rezervasiya edin.",
+      "orderAhead": "Yeməyi əvvəlcədən sifariş edin və gözləmədən götürün.",
+      "stayUpdated": "Son təkliflər və tədbirlər haqqında məlumat alın."
+    },
+    "finalNote": "İstər rahat bir şam yeməyi, istərsə də sürətli qəlyanaltı planlaşdırırsınız, FastBite sizə kömək edəcək.",
+    "about": {
+      "title": "Haqqımızda",
+      "description": "FastBite'ye xoş gəlmisiniz, burada dad rahatlıqla birləşir! Biz müxtəlif ləzzətli yeməklər, sürətli xidmət və rahat atmosfer təklif edirik."
+    },
+    "contact": {
+      "title": "Bizimlə Əlaqə",
+      "address": "Ünvan: 123 Snack Avenue, Food City",
+      "phone": "Telefon: +1 234 567 890",
+      "email": "E-poçt: contact@fastbite.com"
+    }
+  },
+  "menu": {
+    "checkOut": "Baxın",
+    "ourMenu": "Menyumuza",
+    "selectLanguage": "Dil seçin",
+    "addToOrder": "Sifarişə əlavə edin",
+    "addedToOrder": "sifarişinizə əlavə edildi!",
+    "categories": {
+      "soups": "Şorbalar",
+      "desserts": "Desertlər",
+      "beverages": "İçkilər",
+      "barbecue": "Barbekü",
+      "salads": "Salatlar",
+      "pizzas": "Pizzalar"
+    }
+  },
+  "languages": {
+    "english": "English",
+    "russian": "Русский",
+    "azerbaijani": "Azərbaycan"
+  },
+  "navbar": {
+    "home": "Esas",
+    "menu": "Menyu",
+    "booking": "Rezervasiya",
+    "order": "Sifariş",
+    "login": "Daxil ol",
+    "profile": "Profil"
+  },
+  "reserve": {
+    "bookTable": "Masa rezerv edin",
+    "reservation": "Rezervasiya",
+    "date": "Tarix",
+    "chooseTable": "Masa seçin",
+    "startTime": "Başlama vaxtı",
+    "endTime": "Bitmə vaxtı",
+    "selectStartTime": "Başlama vaxtını seçin",
+    "selectEndTime": "Bitmə vaxtını seçin",
+    "addOrder": "Rezervasiyaya sifariş əlavə edin",
+    "confirmReservation": "Rezervasiyanı təsdiqləyin",
+    "modal": {
+      "addItems": "Rezervasiyaya yeməklər əlavə edin",
+      "selectedItems": "Seçilmiş yeməklər:",
+      "total": "Cəmi:",
+      "cancel": "Ləğv et",
+      "close": "Bağla",
+      "confirmOrderReservation": "Sifarişi və rezervasiyanı təsdiqləyin",
+      "loginRequired": "Rezervasiya etmək üçün hesabınıza daxil olmalısınız.",
+      "selectDate": "Davam etmək üçün tarix seçin.",
+      "reservationSuccess": "Rezervasiya və sifariş uğurla təsdiqləndi!"
+    },
+    "guests": "Qonaq sayı",
+    "enterGuests": "Qonaq sayını daxil edin"
+  },
+  "order": {
+    "whatsIn": "Sifarişinizdə",
+    "yourOrder": "Nə var",
+    "selectLanguage": "Dil seçin",
+    "emptyOrder": "Sifarişiniz boşdur",
+    "total": "Cəmi",
+    "confirmOrder": "Sifarişi təsdiqlə",
+    "clearOrder": "Sifarişi təmizlə",
+    "newOrder": "Yeni sifariş",
+    "remove": "Sil",
+    "payment": {
+      "success": "Ödəniş uğurla tamamlandı",
+      "cancel": "Ödənişi ləğv et",
+      "error": "Ödəniş xətası"
+    },
+    "selectTable": "Masa seçin",
+    "chooseTable": "Masa nömrəsini seçin",
+    "tableNumber": "Masa",
+    "timeRemaining": "Sifarişin təmizlənməsinə qədər qalan vaxt"
+  },
+  "auth": {
+    "login": {
+      "title": "Daxil ol",
+      "email": "Email",
+      "password": "Şifrə",
+      "signIn": "Daxil ol",
+      "signUp": "Qeydiyyat",
+      "forgotPassword": "Şifrəni unutmusunuz?",
+      "welcomeBack": "Xoş gəlmisiniz!",
+      "keepConnected": "Bizimlə əlaqədə qalın",
+      "successMessage": "Xoş gəlmisiniz!",
+      "error": {
+        "general": "Bir xəta baş verdi. Yenidən cəhd edin.",
+        "invalidPassword": "Yanlış şifrə formatı",
+        "passwordRequirements": "Şifrədə ən az 8 simvol, böyük hərf, kiçik hərf və rəqəm olmalıdır",
+        "invalidCredentials": "Yanlış email və ya şifrə"
+      }
+    },
+    "passwordRecovery": {
+      "title": "Şifrənin bərpası",
+      "enterEmail": "Bərpa kodu almaq üçün email daxil edin",
+      "enterCode": "Təsdiq kodunu daxil edin",
+      "emailPlaceholder": "Email",
+      "newPasswordPlaceholder": "Yeni şifrə",
+      "confirmPasswordPlaceholder": "Şifrəni təsdiqlə",
+      "buttons": {
+        "sendCode": "Kod göndər",
+        "sending": "Göndərilir...",
+        "confirm": "Təsdiqlə",
+        "resetting": "Sıfırlanır...",
+        "resendCode": "Yenidən göndər",
+        "resendCodeIn": "{{seconds}}s sonra təkrar göndər",
+        "close": "Bağla",
+        "backToLogin": "Geriyə"
+      },
+      "errors": {
+        "passwordsNotMatch": "Şifrələr uyğun gəlmir!"
+      }
+    }
+  },
+  "register": {
+    "title": "Qeydiyyat",
+    "success": "Qeydiyyat uğurla tamamlandı!",
+    "loading": "ReCAPTCHA yüklənir...",
+    "fields": {
+      "name": "Ad",
+      "surname": "Soyad",
+      "email": "Email",
+      "phoneNumber": "Telefon nömrəsi",
+      "password": "Şifrə",
+      "confirmPassword": "Şifrəni təsdiqləyin"
+    },
+    "errors": {
+      "general": "Qeydiyyat başlamadı. Yenidən cəhd edin.",
+      "name": {
+        "required": "Ad daxil edilməlidir",
+        "format": "Ad yalnız hərflərdən ibarət olmalıdır",
+        "length": "Ad ən az 2 simvol uzunluğunda olmalıdır"
+      },
+      "surname": {
+        "required": "Soyad daxil edilməlidir",
+        "format": "Soyad yalnız hərflərdən ibarət olmalıdır",
+        "length": "Soyad ən az 2 simvol uzunluğunda olmalıdır"
+      },
+      "email": {
+        "required": "Email daxil edilməlidir",
+        "format": "Düzgün email formatı daxil edin"
+      },
+      "password": {
+        "required": "Şifrə daxil edilməlidir",
+        "format": "Şifrə ən az 8 simvol uzunluğunda, böyük hərf, kiçik hərf və rəqəm olmalıdır"
+      },
+      "confirmPassword": {
+        "required": "Şifrəni təsdiqləyin"
+      }
+    },
+    "buttons": {
+      "signUp": "Qeydiyyatdan keç",
+      "signIn": "Daxil ol"
+    },
+    "welcome": {
+      "title": "Xoş gəlmisiniz!",
+      "message": "Şəxsi məlumatlarınızı daxil edin və bizimlə səyahətə başlayın"
+    }
+  },
+  "profile": {
+    "loading": "Profil yüklənir...",
+    "error": "Xəta: {{message}}",
+    "title": {
+      "top": "Profilinizi",
+      "bottom": "Yoxlayın",
+      "full": "Sizin Profiliniz"
+    },
+    "fields": {
+      "firstName": "Ad",
+      "lastName": "Soyad",
+      "email": "Email",
+      "phoneNumber": "Telefon nömrəsi"
+    },
+    "buttons": {
+      "edit": "Profili redaktə et",
+      "save": "Dəyişiklikləri yadda saxla",
+      "signOut": "Çıxış",
+      "reservationsHistory": "Rezervasiya tarixi",
+      "ordersHistory": "Sifariş tarixi"
+    }
+  },
+  "reserveHistory": {
+    "title": {
+      "top": "Sizin",
+      "bottom": "Rezervasiyalarınız",
+      "main": "Rezervasiya Tarixçəsi"
+    },
+    "status": {
+      "loading": "Rezervasiyalar yüklənir...",
+      "error": "Rezervasiyaların yüklənməsində xəta: {{message}}"
+    },
+    "table": {
+      "date": "Tarix",
+      "start": "Başlama vaxtı",
+      "end": "Bitmə vaxtı",
+      "guests": "Qonaq sayı",
+      "table": "Masa nömrəsi"
+    }
+  },
+  "ordersHistory": {
+    "title": {
+      "top": "Sizin",
+      "bottom": "Sifarişləriniz",
+      "main": "Sifariş Tarixçəsi"
+    },
+    "status": {
+      "loading": "Sifarişlər yüklənir...",
+      "error": "Sifarişlərin yüklənməsində xəta: {{message}}",
+      "empty": "Hələ sifarişiniz yoxdur"
+    },
+    "table": {
+      "date": "Tarix",
+      "table": "Masa",
+      "totalPrice": "Ümumi qiymət",
+      "product": "Məhsul",
+      "quantity": "Miqdar"
+    }
+  },
+  "logout": {
+    "title": "Çıxış",
+    "message": "Çıxmaq istədiyinizə əminsiniz?",
+    "buttons": {
+      "confirm": "Bəli, çıxış",
+      "cancel": "Ləğv et"
+    }
+  },
+  "receipt": {
+    "title": "Sifariş Qəbzi",
+    "table": {
+      "number": "№",
+      "item": "Məhsul",
+      "price": "Qiymət",
+      "total": "Cəmi"
+    },
+    "thankYou": "Sifarişiniz üçün təşəkkür edirik!",
+    "orderId": "Sifariş ID"
+  },
+  "payment": {
+    "loading": "Ödəniş seçimləri yüklənir...",
+    "title": "Ödəniş",
+    "total": {
+      "label": "Cəmi:"
+    },
+    "form": {
+      "cardholderName": {
+        "label": "Kart sahibinin adı",
+        "placeholder": "Kart sahibinin adını daxil edin"
+      },
+      "cardNumber": {
+        "label": "Kart nömrəsi",
+        "placeholder": "Kart nömrəsini daxil edin"
+      },
+      "expiryDate": {
+        "label": "Son istifadə tarixi",
+        "placeholder": "AA/YY"
+      },
+      "cvv": {
+        "label": "CVV",
+        "placeholder": "CVV"
+      }
+    },
+    "buttons": {
+      "pay": "İndi ödə",
+      "cancel": "Ləğv et"
+    }
+  },
+  "tableCanvas": {
+    "loading": "Masalar yüklənir...",
+    "tooltips": {
+      "title": "Masa №{{tableId}} (Tutum: {{capacity}} nəfər)",
+      "noReservations": "Bu gün üçün rezervasiya yoxdur"
+    }
+  }
+} 

@@ -1,0 +1,378 @@
+.OrderPage {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.OrderPage__left-side {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  color: white;
+}
+
+.OrderPage__headers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.OrderPage__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../../assets/elseImages/op.jpg");
+  opacity: 0.7;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(3px);
+  z-index: 0;
+}
+
+.OrderPage__left-top {
+  font-family: "Dancing Script", sans-serif;
+  color: #face8d;
+  font-size: 50px;
+  z-index: 1;
+  position: relative;
+  text-align: center;
+}
+
+.OrderPage__left-bot {
+  color: white;
+  font-family: "Ubuntu Mono", sans-serif;
+  font-size: 108px;
+  letter-spacing: 7px;
+  font-weight: 600;
+  z-index: 1;
+  position: relative;
+  text-align: center;
+}
+
+.OrderPage__right-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  padding: 20px;
+  backdrop-filter: blur(15px);
+  color: white;
+  font-family: "Ubuntu Mono", sans-serif;
+}
+
+.OrderPage__order-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 600px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #face8d transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.OrderPage__order-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.OrderPage__order-list::-webkit-scrollbar-thumb {
+  background-color: #face8d;
+  border-radius: 5px;
+}
+
+.OrderPage__order-item {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.OrderPage__order-item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.OrderPage__order-item-name {
+  font-size: 18px;
+  color: #face8d;
+}
+
+.OrderPage__order-item-price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.OrderPage__remove-button {
+  background-color: transparent;
+  color: #ff4c4c;
+  border: none;
+  border-bottom: 1px solid #ff4c4c;
+  padding: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  margin-top: 10px;
+}
+
+.OrderPage__remove-button:hover {
+  color: #ff8080;
+  transform: scale(1.1);
+}
+
+.OrderPage__total {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 20px 0;
+  letter-spacing: 1px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding-top: 10px;
+}
+
+.OrderPage__total h2 {
+  color: #bb9865;
+}
+
+.OrderPage__empty-order {
+  font-size: 20px;
+  text-align: center;
+}
+
+.OrderPage__buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  gap: 20px;
+}
+
+.OrderPage__confirm-button,
+.OrderPage__clear-button {
+  background: linear-gradient(135deg, #face8d, #d4a373);
+  width: 100%;
+  border: none;
+  color: #000;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.OrderPage__confirm-button:hover,
+.OrderPage__clear-button:hover {
+  background-color: #f1c19e;
+}
+
+.OrderPage__receipt {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: rgba(34, 34, 34, 0.9);
+  border-radius: 10px;
+  box-shadow: none;
+  color: #fff;
+}
+
+.OrderPage__receipt-title {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 15px;
+  font-family: "Ubuntu Mono", monospace;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 10px;
+}
+
+.OrderPage__receipt-list {
+  margin: 15px 0;
+}
+
+.OrderPage__receipt-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.OrderPage__item-name {
+  font-size: 20px;
+}
+
+.OrderPage__item-price {
+  font-size: 20px;
+}
+
+.OrderPage__receipt-total {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 15px;
+  text-align: right;
+}
+
+.OrderPage__receipt-status {
+  margin-top: 15px;
+  font-size: 18px;
+  text-align: center;
+  color: #ffd700;
+}
+
+.MenuPage__top-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+
+.MenuPage__table-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.table-label {
+  font-size: 14px;
+  color: #666;
+}
+
+.table-combobox {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.table-combobox:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.table-combobox option {
+  padding: 8px;
+}
+
+@media (max-width: 1500px) {
+  .OrderPage__left-side {
+    width: auto;
+  }
+  .OrderPage__right-side {
+    width: 60%;
+  }
+}
+
+@media (max-width: 768px) {
+  .OrderPage {
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .OrderPage__left-side,
+  .OrderPage__right-side {
+    width: 100%;
+    padding: 20px;
+    overflow: hidden;
+  }
+
+  .OrderPage__left-side span {
+    display: none;
+  }
+
+
+
+  .OrderPage__order-list {
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .OrderPage__left-top {
+    font-size: 40px;
+  }
+
+  .OrderPage__left-bot {
+    font-size: 80px;
+  }
+}
+
+.OrderPage__new-order-button {
+  display: block;
+  margin: 2rem auto;
+  padding: 0.75rem 1.5rem;
+  background-color: #face8d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.OrderPage__new-order-button:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.OrderPage__new-order-button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.OrderPage__table-select {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.OrderPage__table-select select {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  background: linear-gradient(135deg, #face8d, #d4a373);
+  color: black;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.OrderPage__table-select select:focus {
+  outline: none;
+}
+
+.OrderPage__table-select label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}

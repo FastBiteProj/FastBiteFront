@@ -1,0 +1,227 @@
+.users-search-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+ 
+.filtered-users {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.filtered-user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  font-size: 16px;
+  color: #333;
+}
+
+.filtered-user:hover {
+  background-color: #f0f0f0;
+}
+
+.user-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.user-actions-icon {
+  font-size: 18px;
+  color: #555;
+  cursor: pointer;
+}
+
+.user-actions-icon:hover {
+  color: #3498db;
+}
+.edit-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.edit-input {
+  flex: 1;
+  padding: 4px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.save-button,
+.cancel-button {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.save-button {
+  background-color: transparent;
+  color: green;
+}
+
+.cancel-button {
+  background-color: transparent;
+  color: red;
+}
+
+.user-actions {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.user-actions-icon {
+  cursor: pointer;
+  color: gray;
+}
+
+.user-actions-icon:hover {
+  color: black;
+}
+
+.users-default {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.user-actions-icon-edit {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.save-icon {
+  color: rgb(0, 156, 0);
+}
+
+.save-icon:hover {
+  color: rgb(3, 211, 3);
+}
+
+.cancel-icon {
+  color: red;
+}
+
+.cancel-icon:hover {
+  color: rgb(250, 73, 73);
+
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.user-fullname {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.user-contacts {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 14px;
+  color: #666;
+}
+
+.user-email::after {
+  content: '|';
+  margin-left: 15px;
+  color: #ddd;
+}
+
+.users-default {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.edit-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+  padding: 10px;
+}
+
+.edit-input {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.user-actions {
+  display: flex;
+  gap: 15px;
+  margin-left: 20px;
+}
+
+.user-actions-icon {
+  font-size: 18px;
+  color: #777;
+  transition: color 0.2s ease;
+}
+
+.user-actions-icon:hover {
+  color: #333;
+}
+
+.user-actions-icon-edit {
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.save-icon {
+  color: #2ecc71;
+}
+
+.save-icon:hover {
+  color: #27ae60;
+}
+
+.cancel-icon {
+  color: #e74c3c;
+}
+
+.cancel-icon:hover {
+  color: #c0392b;
+}
+
+.edit-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.edit-input {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: border-color 0.2s ease;
+}
+
+.edit-input:focus {
+  border-color: #3498db;
+  outline: none;
+}

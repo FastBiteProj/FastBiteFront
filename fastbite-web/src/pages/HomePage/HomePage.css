@@ -1,0 +1,192 @@
+.HomePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+ 
+.HomePage__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background-image: url("../../assets/elseImages/homepage-background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(2.5px);
+  z-index: 0;
+}
+ 
+.HomePage__headers {
+  display: flex;
+  flex-direction: column;
+}
+
+.HomePage__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  z-index: 1;
+  position: relative;
+  text-align: center;
+}
+
+.HomePage__desc {
+  font-family: "Dancing Script", sans-serif;
+  color: #face8d;
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+.HomePage__logo {
+  color: white;
+  font-family: "Ubuntu Mono", sans-serif;
+  font-size: 108px;
+  letter-spacing: 7px;
+  font-weight: 600;
+}
+
+.HomePage__info {
+  background-color: black;
+  padding: 40px 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.HomePage__info-title {
+  font-family: "Ubuntu Mono", sans-serif;
+  font-size: 28px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.HomePage__info-text {
+  font-family: "Dancing Script", sans-serif;
+  font-size: 20px;
+  color: white;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .HomePage__desc {
+    font-size: 30px;
+  }
+
+  .HomePage__logo {
+    font-size: 70px;
+  }
+
+  .HomePage__info-title {
+    font-size: 24px;
+  }
+
+  .HomePage__info-text {
+    font-size: 18px;
+  }
+}
+
+.HomePage__app-info {
+  background-color: black;
+  color: black;
+  padding: 40px 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.HomePage__app-info-title {
+  font-family: "Ubuntu Mono", sans-serif;
+  font-size: 28px;
+  color: #face8d;
+  margin-bottom: 20px;
+}
+
+.HomePage__app-info-text {
+  font-family: "Dancing Script", sans-serif;
+  font-size: 20px;
+  color: #face8d;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.HomePage__app-info-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 800px;
+}
+
+.HomePage__app-info-list li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 120px;
+  color: #face8d;
+  gap: 20px;
+  font-size: 18px;
+  font-family: "Ubuntu Mono", sans-serif;
+  margin-bottom: 35px;
+  margin-top: 35px;
+}
+
+.HomePage__app-info-list img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #face8d;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.HomePage__app-info-list li span {
+  margin-top: 10px;
+  font-family: "Dancing Script", sans-serif;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .HomePage__app-info-title {
+    font-size: 24px;
+  }
+
+  .HomePage__app-info-text {
+    font-size: 18px;
+  }
+
+  .HomePage__app-info-list {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .HomePage__app-info-list {
+    gap: 10px;
+  }
+
+  .HomePage__app-info-list li {
+    width: 90px;
+  }
+
+  .HomePage__app-info-list img {
+    width: 50px;
+    height: 50px;
+    padding: 8px;
+  }
+
+  .HomePage__app-info-list li span {
+    font-size: 14px;
+  }
+}

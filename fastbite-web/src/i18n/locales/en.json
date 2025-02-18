@@ -1,0 +1,312 @@
+{
+  "home": {
+    "tagline": "Your Perfect Snack",
+    "whyChoose": "Why Choose FastBite?",
+    "description": "FastBite is designed to simplify your dining experience. With our application, you can:",
+    "features": {
+      "browseMenu": "Browse our diverse menu to find your favorite dishes.",
+      "reserveTable": "Reserve a table at your convenience.",
+      "orderAhead": "Order food in advance and pick it up without waiting.",
+      "stayUpdated": "Stay updated on our latest offers and events."
+    },
+    "finalNote": "Whether you're planning a cozy dinner or a quick snack, FastBite has you covered.",
+    "about": {
+      "title": "About Us",
+      "description": "Welcome to FastBite, where flavor meets convenience! We offer a wide variety of delicious meals, quick service, and a cozy atmosphere."
+    },
+    "contact": {
+      "title": "Contact Us",
+      "address": "Address: 123 Snack Avenue, Food City",
+      "phone": "Phone: +1 234 567 890",
+      "email": "Email: contact@fastbite.com"
+    }
+  },
+  "menu": {
+    "checkOut": "Check Out",
+    "ourMenu": "Our Menu",
+    "selectLanguage": "Select Language",
+    "addToOrder": "Add to Order",
+    "addedToOrder": "added to your order!",
+    "categories": {
+      "soups": "Soups",
+      "desserts": "Desserts",
+      "beverages": "Beverages",
+      "barbecue": "Barbecue",
+      "salads": "Salads",
+      "pizzas": "Pizzas"
+    }
+  },
+  "languages": {
+    "english": "English",
+    "russian": "Русский",
+    "azerbaijani": "Azərbaycan"
+  },
+  "navbar": {
+    "home": "Home",
+    "menu": "Menu",
+    "booking": "Booking",
+    "order": "Order",
+    "login": "Log In",
+    "profile": "Profile"
+  },
+  "reserve": {
+    "bookTable": "Book a table",
+    "reservation": "Reservation",
+    "date": "Date",
+    "chooseTable": "Choose Table",
+    "startTime": "Start Time",
+    "endTime": "End Time",
+    "selectStartTime": "Select start time",
+    "selectEndTime": "Select end time",
+    "addOrder": "Add Order to Reservation",
+    "confirmReservation": "Confirm Reservation",
+    "modal": {
+      "addItems": "Add Items to Your Reservation",
+      "selectedItems": "Selected Items:",
+      "total": "Total:",
+      "cancel": "Cancel",
+      "close": "Close",
+      "confirmOrderReservation": "Confirm Order & Reservation",
+      "loginRequired": "To make a reservation you must log in to your account.",
+      "selectDate": "Please select a date to proceed.",
+      "reservationSuccess": "Reservation and order confirmed successfully!"
+    },
+    "guests": "Number of Guests",
+    "enterGuests": "Enter number of guests"
+  },
+  "order": {
+    "whatsIn": "What's in",
+    "yourOrder": "Your Order",
+    "selectLanguage": "Select Language",
+    "emptyOrder": "Your order is empty",
+    "total": "Total",
+    "confirmOrder": "Confirm Order",
+    "clearOrder": "Clear Order",
+    "newOrder": "New Order",
+    "remove": "Remove",
+    "payment": {
+      "success": "Payment successful",
+      "cancel": "Cancel payment",
+      "error": "Payment failed"
+    },
+    "selectTable": "Select Table",
+    "chooseTable": "Choose Table Number",
+    "tableNumber": "Table",
+    "timeRemaining": "Time remaining until order is cleared"
+  },
+  "auth": {
+    "login": {
+      "title": "Sign In",
+      "email": "Email",
+      "password": "Password",
+      "signIn": "Sign In",
+      "signUp": "Sign Up",
+      "forgotPassword": "Forgot Password?",
+      "welcomeBack": "Welcome Back!",
+      "keepConnected": "Keep connected with us",
+      "successMessage": "Welcome back!",
+      "error": {
+        "general": "Something went wrong. Please try again.",
+        "invalidPassword": "Invalid password format",
+        "passwordRequirements": "Password must contain letters and numbers",
+        "invalidCredentials": "Invalid email or password"
+      }
+    },
+    "passwordRecovery": {
+      "title": "Password Recovery",
+      "enterEmail": "Enter your email address to receive a recovery code",
+      "enterCode": "Enter the verification code",
+      "emailPlaceholder": "Email",
+      "newPasswordPlaceholder": "New Password",
+      "confirmPasswordPlaceholder": "Confirm New Password",
+      "buttons": {
+        "sendCode": "Send Code",
+        "sending": "Sending...",
+        "confirm": "Confirm",
+        "resetting": "Resetting...",
+        "resendCode": "Resend Code",
+        "resendCodeIn": "Resend in {{seconds}}s",
+        "close": "Close",
+        "backToLogin": "Back to Login"
+      },
+      "errors": {
+        "passwordsNotMatch": "Passwords do not match!"
+      }
+    }
+  },
+  "register": {
+    "title": "Sign Up",
+    "success": "Registration successful!",
+    "loading": "Loading reCAPTCHA...",
+    "fields": {
+      "name": "First Name",
+      "surname": "Last Name",
+      "email": "Email",
+      "phoneNumber": "Phone Number",
+      "password": "Password",
+      "confirmPassword": "Confirm Password"
+    },
+    "errors": {
+      "general": "Registration failed. Please try again",
+      "name": {
+        "required": "Name is required",
+        "format": "Name should only contain letters",
+        "length": "Name must be at least 2 characters long"
+      },
+      "surname": {
+        "required": "Surname is required",
+        "format": "Surname should only contain letters",
+        "length": "Surname must be at least 2 characters long"
+      },
+      "email": {
+        "required": "Email is required",
+        "format": "Please enter a valid email address"
+      },
+      "password": {
+        "required": "Password is required",
+        "format": "Password must contain at least 8 characters, including uppercase, lowercase letters and numbers"
+      },
+      "confirmPassword": {
+        "required": "Please confirm your password",
+        "match": "Passwords do not match"
+      },
+      "captcha": "Please complete the captcha"
+    },
+    "buttons": {
+      "signUp": "Sign Up",
+      "signIn": "Sign In"
+    },
+    "welcome": {
+      "title": "Welcome Friend!",
+      "message": "Enter your personal details and start your journey with us"
+    }
+  },
+  "profile": {
+    "loading": "Loading profile...",
+    "error": "Error: {{message}}",
+    "title": {
+      "top": "Check your",
+      "bottom": "Profile",
+      "full": "Your Profile"
+    },
+    "fields": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phoneNumber": "Phone Number"
+    },
+    "buttons": {
+      "edit": "Edit Profile",
+      "save": "Save Changes",
+      "signOut": "Sign Out",
+      "reservationsHistory": "Reservations History",
+      "ordersHistory": "Orders History"
+    }
+  },
+  "reserveHistory": {
+    "title": {
+      "top": "Your",
+      "bottom": "Reservations",
+      "main": "Reservation History"
+    },
+    "status": {
+      "loading": "Loading reservations...",
+      "error": "Error loading reservations: {{message}}"
+    },
+    "table": {
+      "date": "Date",
+      "start": "Start Time",
+      "end": "End Time",
+      "guests": "Number of Guests",
+      "table": "Table Number"
+    }
+  },
+  "ordersHistory": {
+    "title": {
+      "top": "Your",
+      "bottom": "Orders",
+      "main": "Orders History"
+    },
+    "status": {
+      "loading": "Loading orders...",
+      "error": "Error loading orders: {{message}}",
+      "empty": "You have no orders yet"
+    },
+    "table": {
+      "date": "Date",
+      "table": "Table",
+      "totalPrice": "Total Price",
+      "product": "Product",
+      "quantity": "Quantity"
+    }
+  },
+  "logout": {
+    "title": "Sign Out",
+    "message": "Are you sure you want to sign out?",
+    "buttons": {
+      "confirm": "Yes, Sign Out",
+      "cancel": "Cancel"
+    }
+  },
+  "receipt": {
+    "title": "Order Receipt",
+    "table": {
+      "number": "No.",
+      "item": "Item",
+      "price": "Price",
+      "total": "Total"
+    },
+    "thankYou": "Thank you for your order!",
+    "orderId": "Order ID"
+  },
+  "payment": {
+    "loading": "Loading payment options...",
+    "title": "Payment",
+    "total": {
+      "label": "Total:"
+    },
+    "methods": {
+      "cash": "Cash",
+      "card": "Card",
+      "paypal": "PayPal"
+    },
+    "cash": {
+      "info": "Please pay at the restaurant",
+      "confirm": "Confirm Cash Payment"
+    },
+    "form": {
+      "cardholderName": {
+        "label": "Cardholder Name",
+        "placeholder": "Enter cardholder name"
+      },
+      "cardNumber": {
+        "label": "Card Number",
+        "placeholder": "Enter card number"
+      },
+      "expiryDate": {
+        "label": "Expiry Date",
+        "placeholder": "MM/YY"
+      },
+      "cvv": {
+        "label": "CVV",
+        "placeholder": "CVV"
+      }
+    },
+    "buttons": {
+      "pay": "Pay Now",
+      "cancel": "Cancel"
+    },
+    "error": {
+      "cash": "Failed to process cash payment",
+      "card": "Failed to process card payment",
+      "paypal": "PayPal payment failed"
+    }
+  },
+  "tableCanvas": {
+    "loading": "Loading tables...",
+    "tooltips": {
+      "title": "Table #{{tableId}} (Capacity: {{capacity}} persons)",
+      "noReservations": "No reservations for today"
+    }
+  }
+} 

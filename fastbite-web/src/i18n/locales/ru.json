@@ -1,0 +1,296 @@
+{
+  "home": {
+    "tagline": "Ваш идеальный перекус",
+    "whyChoose": "Почему выбрать FastBite?",
+    "description": "FastBite создан, чтобы упростить ваш опыт в ресторане. С нашим приложением вы можете:",
+    "features": {
+      "browseMenu": "Просматривайте наше разнообразное меню и выбирайте любимые блюда.",
+      "reserveTable": "Бронируйте столик в удобное время.",
+      "orderAhead": "Заказывайте еду заранее и забирайте без ожидания.",
+      "stayUpdated": "Будьте в курсе наших последних акций и событий."
+    },
+    "finalNote": "Планируете уютный ужин или быстрый перекус? FastBite вам поможет.",
+    "about": {
+      "title": "О нас",
+      "description": "Добро пожаловать в FastBite, где вкус сочетается с удобством! Мы предлагаем широкий выбор вкусных блюд, быстрое обслуживание и уютную атмосферу."
+    },
+    "contact": {
+      "title": "Свяжитесь с нами",
+      "address": "Адрес: 123 Snack Avenue, Food City",
+      "phone": "Телефон: +1 234 567 890",
+      "email": "Email: contact@fastbite.com"
+    }
+  },
+  "menu": {
+    "checkOut": "Посмотрите",
+    "ourMenu": "Наше Меню",
+    "selectLanguage": "Выберите язык",
+    "addToOrder": "Добавить в заказ",
+    "addedToOrder": "добавлено в ваш заказ!",
+    "categories": {
+      "soups": "Супы",
+      "desserts": "Десерты",
+      "beverages": "Напитки",
+      "barbecue": "Барбекю",
+      "salads": "Салаты",
+      "pizzas": "Пиццы"
+    }
+  }, 
+  "languages": {
+    "english": "English",
+    "russian": "Русский",
+    "azerbaijani": "Azərbaycan"
+  },
+  "navbar": {
+    "home": "Главная",
+    "menu": "Меню",
+    "booking": "Бронирование",
+    "order": "Заказ",
+    "login": "Войти",
+    "profile": "Профиль"
+  },
+  "reserve": {
+    "bookTable": "Забронировать стол",
+    "reservation": "Бронирование",
+    "date": "Дата",
+    "chooseTable": "Выбрать стол",
+    "startTime": "Время начала",
+    "endTime": "Время окончания",
+    "selectStartTime": "Выберите время начала",
+    "selectEndTime": "Выберите время окончания",
+    "addOrder": "Добавить заказ к бронированию",
+    "confirmReservation": "Подтвердить бронирование",
+    "modal": {
+      "addItems": "Добавить блюда к бронированию",
+      "selectedItems": "Выбранные блюда:",
+      "total": "Итого:",
+      "cancel": "Отмена",
+      "close": "Закрыть",
+      "confirmOrderReservation": "Подтвердить заказ и бронирование",
+      "loginRequired": "Для бронирования необходимо войти в аккаунт.",
+      "selectDate": "Пожалуйста, выберите дату для продолжения.",
+      "reservationSuccess": "Бронирование и заказ успешно подтверждены!"
+    },
+    "guests": "Количество гостей",
+    "enterGuests": "Введите количество гостей"
+  },
+  "order": {
+    "whatsIn": "Что в",
+    "yourOrder": "Вашем Заказе",
+    "selectLanguage": "Выберите язык",
+    "emptyOrder": "Ваш заказ пуст",
+    "total": "Итого",
+    "confirmOrder": "Подтвердить заказ",
+    "clearOrder": "Очистить заказ",
+    "newOrder": "Новый заказ",
+    "remove": "Удалить",
+    "payment": {
+      "success": "Оплата прошла успешно",
+      "cancel": "Отменить оплату",
+      "error": "Ошибка оплаты"
+    },
+    "selectTable": "Выберите стол",
+    "chooseTable": "Выберите номер стола",
+    "tableNumber": "Стол",
+    "timeRemaining": "Время до очистки заказа"
+  },
+  "auth": {
+    "login": {
+      "title": "Вход",
+      "email": "Электронная почта",
+      "password": "Пароль",
+      "signIn": "Войти",
+      "signUp": "Регистрация",
+      "forgotPassword": "Забыли пароль?",
+      "welcomeBack": "С возвращением!",
+      "keepConnected": "Оставайтесь на связи с нами",
+      "successMessage": "С возвращением!",
+      "error": {
+        "general": "Что-то пошло не так. Пожалуйста, попробуйте снова.",
+        "invalidPassword": "Неверный формат пароля",
+        "passwordRequirements": "Пароль должен содержать не менее 8 символов, включая заглавные и строчные буквы и цифры",
+        "invalidCredentials": "Неверный email или пароль"
+      }
+    },
+    "passwordRecovery": {
+      "title": "Восстановление пароля",
+      "enterEmail": "Введите email для получения кода",
+      "enterCode": "Введите код подтверждения",
+      "emailPlaceholder": "Email",
+      "newPasswordPlaceholder": "Новый пароль",
+      "confirmPasswordPlaceholder": "Подтвердите пароль",
+      "buttons": {
+        "sendCode": "Отправить код",
+        "sending": "Отправка...",
+        "confirm": "Подтвердить",
+        "resetting": "Сброс...",
+        "resendCode": "Отправить снова",
+        "resendCodeIn": "Повторить через {{seconds}}с",
+        "close": "Закрыть",
+        "backToLogin": "Вернуться"
+      },
+      "errors": {
+        "passwordsNotMatch": "Пароли не совпадают!"
+      }
+    }
+  },
+  "register": {
+    "title": "Регистрация",
+    "success": "Регистрация успешна!",
+    "loading": "Загрузка reCAPTCHA...",
+    "fields": {
+      "name": "Имя",
+      "surname": "Фамилия",
+      "email": "Электронная почта",
+      "phoneNumber": "Номер телефона",
+      "password": "Пароль",
+      "confirmPassword": "Подтвердите пароль"
+    },
+    "errors": {
+      "general": "Регистрация не удалась. Пожалуйста, попробуйте снова.",
+      "name": {
+        "required": "Имя обязательно",
+        "format": "Имя должно содержать только буквы",
+        "length": "Имя должно быть длиной не менее 2 символов"
+      },
+      "surname": {
+        "required": "Фамилия обязательна",
+        "format": "Фамилия должна содержать только буквы",
+        "length": "Фамилия должна быть длиной не менее 2 символов"
+      },
+      "email": {
+        "required": "Email обязателен",
+        "format": "Введите правильный email"
+      },
+      "password": {
+        "required": "Пароль обязателен",
+        "format": "Пароль должен содержать не менее 8 символов, включая заглавные и строчные буквы и цифры"
+      },
+      "confirmPassword": {
+        "required": "Подтвердите пароль"
+      }
+    },
+    "buttons": {
+      "signUp": "Зарегистрироваться",
+      "signIn": "Войти"
+    },
+    "welcome": {
+      "title": "Добро пожаловать!",
+      "message": "Введите свои личные данные и начните путешествие с нами"
+    }
+  },
+  "profile": {
+    "loading": "Загрузка профиля...",
+    "error": "Ошибка: {{message}}",
+    "title": {
+      "top": "Проверьте ваш",
+      "bottom": "Профиль",
+      "full": "Ваш Профиль"
+    },
+    "fields": {
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "email": "Электронная почта",
+      "phoneNumber": "Номер телефона"
+    },
+    "buttons": {
+      "edit": "Редактировать профиль",
+      "save": "Сохранить изменения",
+      "signOut": "Выйти",
+      "reservationsHistory": "История бронирований",
+      "ordersHistory": "История заказов"
+    }
+  },
+  "reserveHistory": {
+    "title": {
+      "top": "Ваши",
+      "bottom": "Бронирования",
+      "main": "История бронирований"
+    },
+    "status": {
+      "loading": "Загрузка бронирований...",
+      "error": "Ошибка загрузки бронирований: {{message}}"
+    },
+    "table": {
+      "date": "Дата",
+      "start": "Время начала",
+      "end": "Время окончания",
+      "guests": "Количество гостей",
+      "table": "Номер стола"
+    }
+  },
+  "ordersHistory": {
+    "title": {
+      "top": "Ваши",
+      "bottom": "Заказы",
+      "main": "История заказов"
+    },
+    "status": {
+      "loading": "Загрузка заказов...",
+      "error": "Ошибка загрузки заказов: {{message}}",
+      "empty": "У вас пока нет заказов"
+    },
+    "table": {
+      "date": "Дата",
+      "table": "Стол",
+      "totalPrice": "Итоговая цена",
+      "product": "Продукт",
+      "quantity": "Количество"
+    }
+  },
+  "logout": {
+    "title": "Выход",
+    "message": "Вы уверены, что хотите выйти?",
+    "buttons": {
+      "confirm": "Да, выйти",
+      "cancel": "Отмена"
+    }
+  },
+  "receipt": {
+    "title": "Чек заказа",
+    "table": {
+      "number": "№",
+      "item": "Товар",
+      "price": "Цена",
+      "total": "Итого"
+    },
+    "thankYou": "Спасибо за ваш заказ!",
+    "orderId": "ID заказа"
+  },
+  "payment": {
+    "loading": "Загрузка вариантов оплаты...",
+    "title": "Оплата",
+    "total": {
+      "label": "Итого:"
+    },
+    "form": {
+      "cardholderName": {
+        "label": "Имя владельца карты",
+        "placeholder": "Введите имя владельца карты"
+      },
+      "cardNumber": {
+        "label": "Номер карты",
+        "placeholder": "Введите номер карты"
+      },
+      "expiryDate": {
+        "label": "Срок действия",
+        "placeholder": "ММ/ГГ"
+      },
+      "cvv": {
+        "label": "CVV",
+        "placeholder": "CVV"
+      }
+    },
+    "buttons": {
+      "pay": "Оплатить",
+      "cancel": "Отмена"
+    }
+  },
+  "tableCanvas": {
+    "loading": "Загрузка столов...",
+    "tooltips": {
+      "title": "Стол №{{tableId}} (Вместимость: {{capacity}} чел.)",
+      "noReservations": "На сегодня нет бронирований"
+    }
+  }
+} 

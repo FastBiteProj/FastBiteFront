@@ -1,0 +1,70 @@
+.orders-history {
+  padding: 5px;
+  font-family: "Ubuntu Mono", sans-serif;
+  width: 100%;
+  height: 100%;
+}
+
+.orders-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.orders-history table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders-table-container {
+  max-height: 400px; /* Установите максимальную высоту */
+  overflow-y: auto;  /* Включите вертикальную прокрутку */
+  border: 1px solid #ddd; /* Добавьте границу для лучшей видимости */
+  border-radius: 4px; /* Добавьте закругленные углы */
+  margin-bottom: 20px; /* Отступ снизу для отделения от других элементов */
+}
+
+.orders-history th,
+.orders-history td {
+  padding: 12px;
+  text-align: left;
+  font-size: 16px;
+}
+
+.orders-history th {
+  font-weight: bold;
+  color: gray;
+}
+
+.orders-history td {
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+}
+
+.orders-history tr:hover {
+  background-color: #f4f4f4;
+}
+
+.orders-search-button {
+  display: block;
+  margin: 20px auto 0;
+  padding: 8px 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.orders-search-button:hover {
+  opacity: 0.7;
+  transform: translateY(-1px);
+}
+
+.orders-search-button:active {
+  transform: translateY(0);
+}

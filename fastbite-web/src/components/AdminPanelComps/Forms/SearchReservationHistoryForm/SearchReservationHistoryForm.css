@@ -1,0 +1,154 @@
+.search-reservation-form {
+  padding: 20px;
+  background-color: transparent;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search-reservation-form h3 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.search-form {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  justify-content: center;
+}
+
+.search-input {
+  padding: 10px 15px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 200px;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.search-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  background-color: #ffd700;
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.search-button:hover {
+  background-color: #ffc700;
+}
+
+.results-container {
+  margin-top: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: transparent;
+}
+
+.results-table th,
+.results-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.results-table th {
+  background-color: #f8f8f8;
+  font-weight: bold;
+  color: #333;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-bottom: 2px solid #ddd;
+}
+
+.results-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.no-results {
+  color: #666;
+  text-align: center;
+  margin: 30px 0;
+  font-style: italic;
+}
+
+.edit-input {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: calc(100% - 24px);
+  transition: border-color 0.3s ease;
+}
+
+.edit-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.action-icon {
+  font-size: 18px;
+  cursor: pointer;
+  margin-right: 12px;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.action-icon:hover {
+  color: #007bff;
+}
+
+.save-icon {
+  color: #28a745;
+}
+
+.save-icon:hover {
+  color: #218838;
+}
+
+.cancel-icon {
+  color: #dc3545;
+}
+
+.cancel-icon:hover {
+  color: #c82333;
+}
+
+.results-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.results-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.results-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.results-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

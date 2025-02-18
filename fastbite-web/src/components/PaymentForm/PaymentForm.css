@@ -1,0 +1,105 @@
+.PaymentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 25px; 
+  background-color: rgba(255, 255, 255, 0.08);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto; 
+  border: 2px solid #fbc27b;
+}
+ 
+.PaymentForm__title {
+  color: #fbc27b;
+  font-size: 26px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.PaymentForm__label {
+  color: #e0e0e0;
+  font-size: 16px; 
+  margin-bottom: 10px; 
+}
+
+.PaymentForm__input {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.2); 
+  color: white;
+  font-size: 16px;
+  margin-bottom: 20px; 
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.PaymentForm__input:focus {
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  outline: none;
+}
+
+.PaymentForm__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; 
+}
+
+.PaymentForm__buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px; 
+  gap: 15px;
+}
+
+.PaymentForm__submit-button,
+.PaymentForm__cancel-button,
+.PaymentForm__cash-button {
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.PaymentForm__submit-button {
+  background-color: #face8d;
+  color: black;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.PaymentForm__submit-button:hover {
+  background-color: #fbc27b;
+}
+
+.PaymentForm__cash-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.PaymentForm__cash-button:hover {
+  background-color: #218838;
+}
+
+.PaymentForm__cancel-button {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  box-shadow: none;
+}
+ 
+.PaymentForm__cancel-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #face8d;
+}
+
+

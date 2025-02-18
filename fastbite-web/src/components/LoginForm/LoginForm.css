@@ -1,0 +1,309 @@
+.login-container {
+  display: flex;
+  flex-direction: column; 
+  width: 100%;
+  height: auto;
+  background-color: rgba(0, 0, 0, 0.85);
+  border-radius: 15px;
+  background-color: rgb(32, 32, 32);
+  transition: width 0.3s ease, height 0.3s ease;
+  padding: 20px; 
+}
+
+.login-left,
+.login-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  padding: 20px; 
+}
+
+.login-right {
+  background: linear-gradient(135deg, #333, #222);
+  box-shadow: 0 9px 12px rgba(0, 0, 0, 0.5);
+}
+
+.login-left h1,
+.login-right h2 {
+  font-size: 2em; /
+}
+
+.login-form-container h1 {
+  font-family: "Dancing Script", sans-serif;
+  font-size: 2.8em;
+  color: #face8d;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-input-box {
+  position: relative;
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.login-input-box input {
+  width: 100%;
+  padding: 12px 45px 12px 15px;
+  background-color: #222;
+  border: 1px solid #555;
+  border-radius: 10px;
+  font-family: "Ubuntu Mono", sans-serif;
+  color: #fff;
+  font-size: 16px;
+  transition: border-color 0.3s;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.login-input-box input:focus {
+  border-color: #face8d;
+  outline: none;
+}
+
+.login-icon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  color: #face8d;
+  font-size: 18px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 15px;
+  background-color: #face8d;
+  color: black;
+  font-family: "Ubuntu Mono", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #e4b57f;
+}
+
+.login-forgot-password {
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: end;
+}
+
+.login-forgot-password button {
+  background-color: transparent;
+  border: none;
+  color: #face8d;
+  cursor: pointer;
+  font-family: "Ubuntu Mono";
+  font-size: 16px;
+}
+
+.login-forgot-password button:hover {
+  color: #e4b57f;
+}
+
+.success-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.success-message h1 {
+  color: white;
+  font-family: "Ubuntu Mono", sans-serif;
+  text-align: center;
+}
+
+.success-message img {
+  width: 50%;
+}
+
+.login-right h2 {
+  font-family: "Dancing Script", sans-serif;
+  font-size: 2.5em;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.login-right p {
+  font-family: "Ubuntu Mono", sans-serif;
+  color: white;
+  font-size: 1.2em;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.login-right button {
+  padding: 15px 30px;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  font-family: "Ubuntu Mono", sans-serif;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 20px;
+}
+
+.login-right button:hover {
+  background-color: white;
+  color: black;
+}
+
+.register-link p {
+  color: #fff;
+  font-family: "Ubuntu Mono", sans-serif;
+  text-align: center;
+}
+
+.register-link a {
+  color: #face8d;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.register-link a:hover {
+  color: #e4b57f;
+}
+
+@media (min-width: 600px) {
+  .login-container {
+    flex-direction: row; 
+    height: 500px;
+  }
+
+  .login-left,
+  .login-right {
+    padding: 40px; 
+  }
+
+  .login-left h1,
+  .login-right h2 {
+    font-size: 2.5em; 
+  }
+
+  .login-input-box input {
+    padding: 12px; 
+    font-size: 1.1em; 
+  }
+
+  button[type="submit"] {
+    padding: 15px; 
+    font-size: 1.2em;
+  }
+
+  .success-message img {
+    width: 50%;
+  }
+}
+
+@media (max-width: 600px) {
+  .login-container {
+    padding: 10px; 
+  }
+
+  .login-input-box input {
+    padding: 8px; 
+    font-size: 0.9em; 
+  }
+
+  button[type="submit"] {
+    padding: 10px; 
+    font-size: 1em; 
+  }
+
+  .success-message img {
+    width: 80%; 
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.error-messages {
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: rgba(229, 62, 62, 0.1);
+  border: 1px solid rgba(229, 62, 62, 0.3);
+}
+
+.error-message {
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  right: 0;
+  color: #e53e3e;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: "Ubuntu Mono", sans-serif;
+  padding: 8px;
+  margin-top: 10px;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.error-message .error-icon {
+  color: #e53e3e;
+  font-size: 14px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Добавим отступ для контейнера формы */
+.login-form-container {
+  position: relative;
+  padding-bottom: 40px; /* Место для сообщения об ошибке */
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 45px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #face8d;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.password-toggle:hover {
+  color: #e4b57f;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.password-toggle:active {
+  transform: translateY(-50%) scale(0.95);
+}

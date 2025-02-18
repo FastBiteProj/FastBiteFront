@@ -1,0 +1,129 @@
+.LogoutModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+    z-index: 1000;
+
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.LogoutModal__content {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    background-color: rgb(32, 32, 32);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(0.95);
+    animation: popup 0.3s forwards;
+
+}
+
+@keyframes popup {
+    0% {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.LogoutModal__content h3 {
+    color: #face8d;
+    font-size: 22px;
+    font-family: "Ubunto Mono", sans-serif;
+}
+
+
+.LogoutModal__buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+
+}
+
+
+.LogoutModal__yes-no {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #face8d;
+    padding: 10px 18px;
+    color: #face8d;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+
+}
+ 
+.LogoutModal__yes-no:hover {
+    background-color: #face8d; 
+    color: #202020;
+}
+
+.LogoutModal.closing {
+    animation: fadeOut 0.3s forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.LogoutModal__content {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    background-color: rgb(32, 32, 32);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(0.95);
+    animation: popup 0.3s forwards;
+}
+
+@keyframes popup {
+    0% {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.LogoutModal.closing .LogoutModal__content {
+    animation: popupClose 0.3s forwards;
+}
+
+@keyframes popupClose {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+}

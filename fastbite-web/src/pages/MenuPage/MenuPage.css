@@ -1,0 +1,469 @@
+.MenuPage {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.MenuPage__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../../assets/elseImages/mp2.jpg");
+  opacity: 70%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(3px);
+  z-index: 0;
+}
+
+.fb-header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fb-header {
+  color: white;
+  margin-top: 30px;
+  font-family: "Ubuntu Mono", sans-serif;
+  border: none;
+  background-color: transparent;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.MenuPage__headers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.MenuPage__left-side {
+  width: 50%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.MenuPage__right-side {
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.MenuPage__left-top {
+  font-family: "Dancing Script", sans-serif;
+  color: #face8d;
+  font-size: 50px;
+  z-index: 1;
+  position: relative;
+}
+
+.MenuPage__left-bot {
+  color: white;
+  font-family: "Ubuntu Mono", sans-serif;
+  font-size: 108px;
+  letter-spacing: 7px;
+  font-weight: 600;
+  z-index: 1;
+  position: relative;
+  text-align: center;
+}
+
+.MenuPage__right-categories {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.MenuPage__right-item {
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 7px;
+  color: #ffffff;
+  opacity: 80%;
+  border: none;
+  font-size: 20px;
+  font-family: "Ubuntu Mono", sans-serif;
+  transition: 0.5s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.MenuPage__right-item.active {
+  color: #face8d;
+  font-weight: bold;
+}
+
+.MenuPage__right-item:hover {
+  color: #face8d;
+  transform: scale(1.07);
+}
+
+.MenuPage__right-menulist {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: scroll;
+  padding: 10px 30px;
+  scrollbar-width: thin;
+  scrollbar-color: #face8d transparent;
+  overflow-x: hidden;
+}
+
+.MenuPage__right-menulist::-webkit-scrollbar {
+  width: 8px;
+}
+
+.MenuPage__right-menulist::-webkit-scrollbar-thumb {
+  background-color: #face8d;
+  border-radius: 10px;
+}
+
+.MenuPage__right-menulist::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.MenuPage__card {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  border: 1px solid rgb(46, 45, 45);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+.MenuPage__card:hover {
+  transform: scale(1.01);
+}
+
+.MenuPage__card-image {
+  width: 200px;
+  border-radius: 10px;
+}
+
+.MenuPage__card-desc {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  flex-grow: 1;
+  position: relative;
+}
+
+.MenuPage__card-desc-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-name {
+  color: white;
+  font-family: "Ubuntu Mono", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.card-desc {
+  color: white;
+  opacity: 80%;
+  font-family: "Ubuntu Mono", sans-serif;
+  font-weight: 300;
+  margin-top: 20px;
+  width: 70%;
+}
+
+.MenuPage__card-price {
+  color: white;
+  font-family: "Ubuntu Mono", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.MenuPage__category-section {
+  margin: 20px 0;
+}
+
+.MenuPage__category-title {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: white;
+  padding-left: 30px;
+  color: #face8d;
+  font-family: "Dancing Script", sans-serif;
+}
+
+.MenuPage__card-price-button {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+* {
+  /* border: 1px solid red; */
+}
+
+.add-to-order-button {
+  background-color: #fff;
+  color: black;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 15px;
+  width: 120px;
+  padding: 10px 10px;
+  font-family: "Ubuntu Mono", sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-order-button:hover {
+  background-color: #ffad43;
+}
+
+.MenuPage__card.loading {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  animation: pulse 1.5s infinite;
+  position: relative;
+}
+
+.MenuPage__language-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 20px;
+  z-index: 2;
+}
+
+.language-label {
+  color: #ffffff;
+  font-family: "Ubuntu Mono", sans-serif;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.language-combobox {
+  background-color: #fff;
+  color: #333;
+  padding: 8px 12px;
+  font-family: "Ubuntu Mono", sans-serif;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.language-combobox:hover {
+  background-color: #f4f4f4;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.language-combobox:focus {
+  outline: none;
+  box-shadow: 0 0 3px 2px #face8d;
+}
+
+
+.MenuPage__card-placeholder {
+  width: 200px;
+  height: 120px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+@media (max-width: 1500px) {
+  .MenuPage__left-side {
+    width: auto;
+  }
+
+  .MenuPage__right-side {
+    width: 70%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .MenuPage__left-side {
+    width: 40%;
+  }
+
+  .MenuPage__right-side {
+    width: 60%;
+  }
+
+  .MenuPage__left-top {
+    font-size: 40px;
+  }
+
+  .MenuPage__left-bot {
+    font-size: 80px;
+  }
+
+  .MenuPage__right-item {
+    font-size: 18px;
+  }
+
+  .MenuPage__card {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 1024px) {
+
+
+  .MenuPage__right-item {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .MenuPage {
+    flex-direction: column;
+    overflow: visible;
+    height: 100vh;
+  }
+
+  .MenuPage__left-side,
+  .MenuPage__right-side {
+    width: 100%;
+    padding: 20px;
+    overflow: hidden;
+  }
+
+  .MenuPage__left-side span {
+    display: none;
+  }
+
+  .MenuPage__left-top {
+    font-size: 36px;
+  }
+
+  .MenuPage__left-bot {
+    font-size: 72px;
+  }
+
+  .MenuPage__title {
+    font-size: 28px;
+  }
+
+  .MenuPage__card {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .MenuPage__right-side {
+    width: 100%;
+  }
+
+  .MenuPage__right-item {
+    font-size: 16px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .MenuPage__right-item::before {
+    margin-right: 5px;
+  }
+
+  .MenuPage__card-price {
+    position: relative;
+    margin-top: 10px;
+  }
+
+  .add-to-order-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  .MenuPage__card-desc {
+    margin-left: 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .MenuPage__card {
+    padding: 8px;
+    width: 100%;
+  }
+
+  .MenuPage__category-title {
+    font-size: 2em;
+  }
+
+  .MenuPage__card-price {
+    font-size: 16px;
+    top: auto;
+    right: auto;
+    margin-top: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .MenuPage__right-item {
+    font-size: 12px;
+  }
+
+  .MenuPage__left-bot {
+    font-size: 40px;
+  }
+
+  .MenuPage__right-categories {
+    padding: 10px;
+  }
+
+  .MenuPage__card-image {
+    width: 100px;
+  }
+
+  .card-name {
+    font-size: 16px;
+  }
+
+  .card-desc {
+    font-size: 12px;
+  }
+
+  .MenuPage__card-desc {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .MenuPage__card-desc-info {
+    margin-top: 10px;
+  }
+
+  .MenuPage__card-price {
+    font-size: 18px;
+  }
+
+  .add-to-order-button {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
