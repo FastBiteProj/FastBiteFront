@@ -6,24 +6,24 @@ export const AdminPanelMainPage = () => {
   return (
     <div className="admin-panel">
       <div className="admin-content">
-        <div className="admin-comps one-frame">
+        <div className="admin-comps div1">
           <Greetings />
-        </div>
-        <div className="admin-comps two-frame">
-          <OrdersHistory />
-        </div>
-        <div className="admin-comps one-frame">
           <ButtonsBlock />
         </div>
-        <div className="admin-comps one-frame vertical">
+        <div className="admin-comps div3">
+          <OrdersHistory />
+        </div>
+
+        <div className="admin-comps div4">
           <MenuList />
         </div>
-        <div className="admin-comps two-frame">
+        <div className="admin-comps div5">
           <ReservationsHistory />
         </div>
-        <div className="admin-comps one-frame vertical">
+        <div className="admin-comps div6">
           <Users />
         </div>
+        <div className="admin-comps div7"></div>
 
 
         

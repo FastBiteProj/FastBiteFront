@@ -1,12 +1,13 @@
 .greetings {
-    padding: 5px;
     font-family: "Ubuntu Mono", monospace;
     color: black;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
     width: 100%;
     height: 100%;
+    border-bottom: 1px solid gray;
   }
   
   .greetings-title {
@@ -16,29 +17,34 @@
   
   .greetings-profile {
     display: flex;
-    align-items: center;
-    gap: 15px;
+    justify-content: space-between;
+    align-items: end;
+    padding-left: 30px;
+
   }
   
-  .greetings-avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid black;
-  }
   
   .greetings-info {
     text-align: left;
   }
   
   .greetings-name {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
   }
   
   .greetings-nick {
-    font-size: 14px;
+    font-size: 16px;
     color: gray;
+  }
+
+  .logout-btn {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid red;
+    color: red;
+    padding: 5px 13px;
+    font-size: 14px;
+
   }
   

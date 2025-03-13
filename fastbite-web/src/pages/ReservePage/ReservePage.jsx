@@ -351,7 +351,6 @@ export const ReservePage = () => {
           <div>
             <div className="ReservePage__right-form-block">
               <div className="ReservePage__date-group">
-                <label htmlFor="date">{t("reserve.date")}</label>
                 <input
                   type="date"
                   id="date"
