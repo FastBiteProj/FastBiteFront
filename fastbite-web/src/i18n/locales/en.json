@@ -30,10 +30,11 @@
     "categories": {
       "soups": "Soups",
       "desserts": "Desserts",
-      "beverages": "Beverages",
+      "drinks": "Beverages",
       "barbecue": "Barbecue",
       "salads": "Salads",
-      "pizzas": "Pizzas"
+      "pizzas": "Pizzas",
+      "burgers": "Burgers"
     }
   },
   "languages": {
@@ -92,7 +93,19 @@
     "selectTable": "Select Table",
     "chooseTable": "Choose Table Number",
     "tableNumber": "Table",
-    "timeRemaining": "Time remaining until order is cleared"
+    "timeRemaining": "Time remaining until order is cleared",
+    "pleaseSelectTable": "Please select a table first",
+    "errorCreatingParty": "Error creating party. Please try again.",
+    "showParty": "Show Party",
+    "errorShowingParty": "Error showing party information",
+    "leaveParty": "Leave Party",
+    "errorLeavingParty": "Error leaving party",
+    "joinPartyTitle": "Join Party",
+    "enterPartyCode": "Enter party code",
+    "join": "Join",
+    "cancel": "Cancel",
+    "errorJoiningParty": "Failed to join party. Please check the code and try again.",
+    "pleaseEnterCode": "Please enter a party code"
   },
   "auth": {
     "login": {

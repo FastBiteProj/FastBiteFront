@@ -30,10 +30,11 @@
     "categories": {
       "soups": "Şorbalar",
       "desserts": "Desertlər",
-      "beverages": "İçkilər",
+      "drinks": "İçkilər",
       "barbecue": "Barbekü",
       "salads": "Salatlar",
-      "pizzas": "Pizzalar"
+      "pizzas": "Pizzalar",
+      "burgers": "Burgerlər"
     }
   },
   "languages": {
@@ -92,7 +93,19 @@
     "selectTable": "Masa seçin",
     "chooseTable": "Masa nömrəsini seçin",
     "tableNumber": "Masa",
-    "timeRemaining": "Sifarişin təmizlənməsinə qədər qalan vaxt"
+    "timeRemaining": "Sifarişin təmizlənməsinə qədər qalan vaxt",
+    "pleaseSelectTable": "Zəhmət olmasa əvvəlcə masa seçin",
+    "errorCreatingParty": "Partiya yaratma xətası. Yenidən cəhd edin.",
+    "showParty": "Partiya'yi Göstər",
+    "errorShowingParty": "Partiya məlumatını göstərən xəta",
+    "leaveParty": "Partiya'ni tərk et",
+    "errorLeavingParty": "Partiyadan çıxmaq xətası",
+    "joinPartyTitle": "Partiya'ya qoşul",
+    "enterPartyCode": "Partiya kodunu daxil edin",
+    "join": "Qoşul",
+    "cancel": "Ləğv et",
+    "errorJoiningParty": "Partiya'ya qoşulmaq alınmadı. Lütfən, kodu yoxlayın və yenidən cəhd edin.",
+    "pleaseEnterCode": "Lütfən, Partiya kodunu daxil edin"
   },
   "auth": {
     "login": {

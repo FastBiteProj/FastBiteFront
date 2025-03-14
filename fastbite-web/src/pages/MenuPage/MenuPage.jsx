@@ -2,8 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { fetchProducts } from "../../redux/reducers/productSlice";
-import { addToOrder } from "../../redux/reducers/orderSlice";
 import { Navbar } from "../../components/Navbar/Navbar";
+import { addProductToCart } from '../../redux/reducers/orderSlice.js';
 import { Notification } from "../../components/Notification/Notification";
 import "./MenuPage.css";
 import { Link } from "react-router-dom";
@@ -21,6 +21,7 @@ export const MenuPage = () => {
 
   const products = useSelector((state) => state.products.products);
   const productsStatus = useSelector((state) => state.products.status);
+  const user = useSelector((state) => state.auth.user)
 
   useEffect(() => {
     if (productsStatus === "idle") {
@@ -31,7 +32,10 @@ export const MenuPage = () => {
   
 
   const handleAddToOrder = (dish) => {
-    dispatch(addToOrder(dish));
+    console.log(user, user.id)
+    console.log(dish, dish.id)
+    dispatch(addProductToCart({ userId: user.id, productId: dish.id }));
+  
     showNotification(`${getTranslation(dish).name} ${t("menu.addedToOrder")}`);
   };
 

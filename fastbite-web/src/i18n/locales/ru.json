@@ -30,10 +30,11 @@
     "categories": {
       "soups": "Супы",
       "desserts": "Десерты",
-      "beverages": "Напитки",
+      "drinks": "Напитки",
       "barbecue": "Барбекю",
       "salads": "Салаты",
-      "pizzas": "Пиццы"
+      "pizzas": "Пиццы",
+      "burgers": "Бургеры"
     }
   }, 
   "languages": {
@@ -92,7 +93,17 @@
     "selectTable": "Выберите стол",
     "chooseTable": "Выберите номер стола",
     "tableNumber": "Стол",
-    "timeRemaining": "Время до очистки заказа"
+    "timeRemaining": "Время до очистки заказа",
+    "pleaseSelectTable": "Пожалуйста, сначала выберите стол",
+    "errorCreatingParty": "Ошибка создания Партии. Пожалуйста, попробуйте еще раз.",
+    "leaveParty": "Покинуть Парти",
+    "errorLeavingParty": "Ошибка при выходе из Партии",
+    "joinPartyTitle": "Присоединиться к Партии",
+    "enterPartyCode": "Введите код Партии",
+    "join": "Присоединиться",
+    "cancel": "Отмена",
+    "errorJoiningParty": "Не удалось присоединиться к Парти. Пожалуйста, проверьте код и попробуйте снова.",
+    "pleaseEnterCode": "Пожалуйста, введите код Парти"
   },
   "auth": {
     "login": {

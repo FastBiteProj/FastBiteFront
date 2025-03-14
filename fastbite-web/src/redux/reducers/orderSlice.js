@@ -135,6 +135,90 @@ export const deleteOrder = createAsyncThunk(
   }
 );
 
+export const addProductToCart = createAsyncThunk(
+  "order/addProductToCart", 
+  async ({ userId, productId }, { rejectWithValue }) => {
+    try {
+      console.log(userId);
+      const apiData = {
+        Url: `${baseUrl}/api/v1/Cart/addProductsToCart`,
+        Method: 'POST',
+        Headers: {
+          'Content-Type': 'application/json'
+        },
+        Data: { userId, productId }
+      };
+      const response = await ApiManager.apiRequest(apiData);
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const removeProductFromCart = createAsyncThunk(
+  "order/removeProductFromCart", 
+  async ({ userId, productId }, { rejectWithValue }) => {
+    try {
+      console.log(productId, "product id")
+      const apiData = {
+        Url: `${baseUrl}/api/v1/Cart/removeFromCart`,
+        Method: 'DELETE',
+        Headers: {
+          'Content-Type': 'application/json'
+        },
+        Data: {
+          userId: userId,
+          productId: productId
+        }
+      };
+      const response = await ApiManager.apiRequest(apiData);
+      return { productId, response };
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const clearCart = createAsyncThunk(
+  "order/clearCart", 
+  async (userId, { rejectWithValue }) => {
+    try {
+      const apiData = {
+        Url: `${baseUrl}/api/v1/Cart/clearCart`,
+        Method: 'DELETE',
+        Headers: {
+          'Content-Type': 'application/json'
+        },
+        Data: userId
+      };
+      const response = await ApiManager.apiRequest(apiData);
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchCartFromRedis = createAsyncThunk(
+  "order/fetchCart",
+  async (userId, { dispatch, rejectWithValue }) => {
+    try {
+      const apiData = {
+        Url: `${baseUrl}/api/v1/Cart/userCart?userId=${userId.userId}`,
+        Method: 'GET',
+        Headers: {
+          'Content-Type': 'application/json'
+        },
+      };
+      const response = await ApiManager.apiRequest(apiData);
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || "Ошибка загрузки корзины");
+    }
+  }
+);
+
 const orderSlice = createSlice({
   name: "order",
   initialState: loadInitialState(),
@@ -231,6 +315,72 @@ const orderSlice = createSlice({
         localStorage.removeItem(ORDER_TIMESTAMP_KEY);
       })
       .addCase(deleteOrder.rejected, (state, action) => {
+        state.orderStatus = "failed";
+        state.error = action.payload;
+      })
+      .addCase(addProductToCart.pending, (state) => {
+        state.orderStatus = "loading";
+      })
+      .addCase(addProductToCart.fulfilled, (state, action) => {
+        state.orderStatus = "succeeded";
+        state.order.push(action.payload);
+        state.totalPrice += action.payload.price;
+        localStorage.setItem(ORDER_STORAGE_KEY, JSON.stringify({
+          order: state.order,
+          totalPrice: state.totalPrice
+        }));
+        localStorage.setItem(ORDER_TIMESTAMP_KEY, Date.now().toString());
+      })
+      .addCase(addProductToCart.rejected, (state, action) => {
+        state.orderStatus = "failed";
+        state.error = action.payload;
+      })
+      .addCase(removeProductFromCart.pending, (state) => {
+        state.orderStatus = "loading";
+      })
+      .addCase(removeProductFromCart.fulfilled, (state, action) => {
+        const index = state.order.findIndex((item) => item.uniqueID === action.payload.productId);
+        if (index !== -1) {
+          state.totalPrice -= state.order[index].price;
+          state.order.splice(index, 1);
+          localStorage.setItem(ORDER_STORAGE_KEY, JSON.stringify({
+            order: state.order,
+            totalPrice: state.totalPrice
+          }));
+        }
+        state.orderStatus = "succeeded";
+      })
+      .addCase(removeProductFromCart.rejected, (state, action) => {
+        state.orderStatus = "failed";
+        state.error = action.payload;
+      })
+      .addCase(clearCart.pending, (state) => {
+        state.orderStatus = "loading";
+      })
+      .addCase(clearCart.fulfilled, (state) => {
+        state.order = [];
+        state.totalPrice = 0;
+        localStorage.removeItem(ORDER_STORAGE_KEY);
+        localStorage.removeItem(ORDER_TIMESTAMP_KEY);
+        state.orderStatus = "succeeded";
+      })
+      .addCase(clearCart.rejected, (state, action) => {
+        state.orderStatus = "failed";
+        state.error = action.payload;
+      })
+      .addCase(fetchCartFromRedis.pending, (state) => {
+        state.orderStatus = "loading";
+      })
+      .addCase(fetchCartFromRedis.fulfilled, (state, action) => {
+        state.orderStatus = "succeeded";
+        state.order = action.payload;
+        state.totalPrice = action.payload.reduce((sum, item) => sum + (item.price || 0), 0);
+        if (state.order.length === 0) {
+          localStorage.removeItem(ORDER_STORAGE_KEY);
+          localStorage.removeItem(ORDER_TIMESTAMP_KEY);
+        }
+      })
+      .addCase(fetchCartFromRedis.rejected, (state, action) => {
         state.orderStatus = "failed";
         state.error = action.payload;
       });

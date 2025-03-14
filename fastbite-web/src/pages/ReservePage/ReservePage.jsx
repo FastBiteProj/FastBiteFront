@@ -129,19 +129,15 @@ export const ReservePage = () => {
         userId: user.id,
         order: orderData,
       };
-    
-      setReservationData(newReservation);
-
-      console.log("Sending reservation data:", reservationData);
-
-      await dispatch(
-        createReservation(reservationData)
-      ).unwrap();
-
+  
+      console.log("Отправка данных бронирования:", newReservation);
+  
+      await dispatch(createReservation(newReservation)).unwrap();
+  
       setModalContent(t("reserve.modal.reservationSuccess"));
       setModalOpen(true);
       setShowOrderModal(false);
-
+  
       setTime({ start: "", end: "" });
       setTable("");
       setDate("");
@@ -149,7 +145,7 @@ export const ReservePage = () => {
       dispatch(resetReservation());
       setBlurred(true);
     } catch (error) {
-      console.log("Error details:", error);
+      console.log("Ошибка при бронировании:", error);
       setModalContent(error.message || t("reserve.modal.error"));
       setModalOpen(true);
     }

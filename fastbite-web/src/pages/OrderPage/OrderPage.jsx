@@ -3,9 +3,9 @@ import { Navbar } from "../../components/Navbar/Navbar";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  clearOrder,
-  removeFromOrder,
-  checkOrderExpiration,
+  fetchCartFromRedis,
+  removeProductFromCart,
+  clearCart,
 } from "../../redux/reducers/orderSlice";
 import { PaymentForm } from "../../components/PaymentForm/PaymentForm";
 import { fetchClientId } from "../../redux/reducers/paymentSlice";
@@ -15,7 +15,16 @@ import { useNavigate } from "react-router-dom";
 import { fetchTables } from "../../redux/reducers/reservationSlice";
 import { OrderTimer } from "../../components/OrderTimer/OrderTimer";
 import { ORDER_TIMESTAMP_KEY } from "../../constants/orderConstants";
- 
+import * as signalR from "@microsoft/signalr";
+import { 
+  createParty, 
+  getParty, 
+  getPartyCart,
+  leaveParty
+} from '../../redux/reducers/partySlice';
+import { PartyCodeModal } from '../../components/PartyCodeModal/PartyCodeModal';
+import { JoinPartyModal } from '../../components/JoinPartyModal/JoinPartyModal';
+
 export const OrderPage = () => {
   const { t, i18n } = useTranslation();
   const [isPaymentFormVisible, setPaymentFormVisible] = useState(false);
@@ -23,6 +32,11 @@ export const OrderPage = () => {
   const navigate = useNavigate();
   const [selectedTable, setSelectedTable] = useState("");
   const [tables, setTables] = useState([]);
+  const [showPartyModal, setShowPartyModal] = useState(false);
+  const [partyCode, setPartyCode] = useState(null);
+  const [isInParty, setIsInParty] = useState(false);
+  const [currentPartyId, setCurrentPartyId] = useState(null);
+  const [showJoinModal, setShowJoinModal] = useState(false);
 
   const order = useSelector((state) => state.order.order || []);
   const totalPrice = useSelector((state) => state.order.totalPrice || 0);
@@ -41,15 +55,63 @@ export const OrderPage = () => {
     });
   }, [dispatch]);
 
+
   useEffect(() => {
-    dispatch(checkOrderExpiration());
+    const connection = new signalR.HubConnectionBuilder()
+      .withUrl("http://localhost:5156/orderHub")
+      .withAutomaticReconnect()
+      .build();
 
-    const intervalId = setInterval(() => {
-      dispatch(checkOrderExpiration());
-    }, 60000);
+    connection.start()
+      .then(() => console.log("Connected to OrderHub"))
+      .catch(err => console.error("Error While connecting to orderHub: ", err));
 
-    return () => clearInterval(intervalId);
-  }, [dispatch]);
+    connection.on("ReceiveOrderUpdate", () => {
+      if (user && user.id) {
+        console.log("Update of Cart");
+        dispatch(fetchCartFromRedis({ userId: user.id }));
+      } 
+    });
+
+    return () => {
+      connection.stop();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (user && user.id) {
+      console.log('User', user.id);
+      dispatch(fetchCartFromRedis({ userId: user.id }));
+    }
+  }, [dispatch, user?.id]);
+
+  useEffect(() => {
+    const checkPartyStatus = async () => {
+      if (user && user.id) {
+        try {
+          const result = await dispatch(getParty(user.id)).unwrap();
+          if (result) {
+            setIsInParty(true);
+            setCurrentPartyId(result.partyId);
+          }
+
+          console.log(result.partyCode, result.partyId)
+        } catch (error) {
+          console.error('Error checking party status:', error);
+        }
+      }
+    };
+    
+    checkPartyStatus();
+  }, [dispatch, user?.id]);
+
+  useEffect(() => {
+    const savedPartyId = localStorage.getItem('currentPartyId');
+    if (savedPartyId) {
+      setCurrentPartyId(savedPartyId);
+      setIsInParty(true);
+    }
+  }, []);
 
   const getTranslation = (product) => {
     if (!product.translations || product.translations.length === 0) {
@@ -61,9 +123,16 @@ export const OrderPage = () => {
     return translation || product.translations[0];
   };
 
-  const handleClearOrder = () => {
-    dispatch(clearOrder());
-    setPaymentFormVisible(false);
+  const handleClearOrder = async () => {
+    try {
+      if (user && user.id) {
+        await dispatch(clearCart(user.id)).unwrap();
+        setPaymentFormVisible(false);
+        dispatch(fetchCartFromRedis({ userId: user.id }));
+      }
+    } catch (error) {
+      console.error('Error clearing cart:', error);
+    }
   };
 
   const handleConfirmOrder = () => {
@@ -87,16 +156,81 @@ export const OrderPage = () => {
     setPaymentFormVisible(false);
   };
 
-  const handleNewOrder = () => {
-    setShowReceipt(false);
-    dispatch(clearOrder());
-    navigate("/menu");
+  const handleNewOrder = async () => {
+    try {
+      setShowReceipt(false);
+      if (user && user.id) {
+        await dispatch(clearCart(user.id)).unwrap();
+      }
+      navigate("/menu");
+    } catch (error) {
+      console.error('Error handling new order:', error);
+    }
   };
 
   const orderTimestamp = Number(localStorage.getItem(ORDER_TIMESTAMP_KEY));
 
   const handleTimerExpire = () => {
     dispatch(clearOrder());
+  };
+
+  const handleRemoveProduct = async (userId, productId) => {
+    try {
+      await dispatch(removeProductFromCart({ userId, productId })).unwrap();
+      dispatch(fetchCartFromRedis({ userId }));
+    } catch (error) {
+      console.error('Error removing product:', error);
+    }
+  };
+
+  const handleCreateParty = async () => {
+    try {
+      if (!selectedTable) {
+        alert(t("order.pleaseSelectTable"));
+        return;
+      }
+      
+      const result = await dispatch(createParty({
+        ownerId: user.id,
+        tableId: parseInt(selectedTable)
+      })).unwrap();
+      
+      console.log('Created party ID:', result);
+
+      localStorage.setItem('currentPartyId', result);
+      setCurrentPartyId(result);
+      setIsInParty(true);
+      setShowPartyModal(true);
+    } catch (error) {
+      console.error('Error creating party:', error);
+      alert(t("order.errorCreatingParty"));
+    }
+  };
+
+  const handleCloseModal = () => {
+    setShowPartyModal(false);
+    setPartyCode(null);
+  };
+
+
+  const handleLeaveParty = async () => {
+    try {
+      await dispatch(leaveParty({
+        partyId: currentPartyId,
+        userId: user.id
+      })).unwrap();
+      
+      localStorage.removeItem('currentPartyId');
+      setCurrentPartyId(null);
+      setIsInParty(false);
+      setShowPartyModal(false);
+    } catch (error) {
+      console.error('Error leaving party:', error);
+    }
+  };
+
+  const handleJoinPartySuccess = () => {
+    setIsInParty(true);
   };
 
   return (
@@ -150,10 +284,10 @@ export const OrderPage = () => {
                       </span>
                     </div>
                     <div className="OrderPage__order-item-price">
-                      ${dish.price.toFixed(2)}
+                      ${dish.price}
                       <button
                         className="OrderPage__remove-button"
-                        onClick={() => dispatch(removeFromOrder(dish.uniqueID))}
+                        onClick={() => handleRemoveProduct(user.id, dish.id)}
                       >
                         {t("order.remove")}
                       </button>
@@ -168,7 +302,7 @@ export const OrderPage = () => {
             </div>
             <div className="OrderPage__total">
               <h2>
-                {t("order.total")}: ${totalPrice.toFixed(2)}
+                {t("order.total")}: ${totalPrice}
               </h2>
 
               <div className="OrderPage__table-select">
@@ -189,19 +323,45 @@ export const OrderPage = () => {
               </div>
 
               <div className="OrderPage__buttons">
-              <button
-                className="OrderPage__confirm-button"
-                onClick={handleConfirmOrder}
-              >
-                {t("order.confirmOrder")}
-              </button>
-              <button
-                className="OrderPage__clear-button"
-                onClick={handleClearOrder}
-              >
-                {t("order.clearOrder")}
-              </button>
-            </div>
+                <button
+                  className="OrderPage__confirm-button"
+                  onClick={handleConfirmOrder}
+                >
+                  {t("order.confirmOrder")}
+                </button>
+                <button
+                  className="OrderPage__clear-button"
+                  onClick={handleClearOrder}
+                >
+                  {t("order.clearOrder")}
+                </button>
+                {isInParty ? (
+                  <button 
+                    className="OrderPage__party-button"
+                    onClick={() => {
+                      console.log('Current Party ID:', currentPartyId);
+                      setShowPartyModal(true);
+                    }}
+                  >
+                    {t("order.showParty")}
+                  </button>
+                ) : (
+                  <>
+                    <button 
+                      className="OrderPage__party-button"
+                      onClick={handleCreateParty}
+                    >
+                      {t("order.createParty")}
+                    </button>
+                    <button
+                      className="OrderPage__party-button"
+                      onClick={() => setShowJoinModal(true)}
+                    >
+                      {t("order.joinParty")}
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
 
           </>
@@ -228,6 +388,21 @@ export const OrderPage = () => {
           />
         )}
       </div>
+      {showPartyModal && currentPartyId && (
+        <PartyCodeModal 
+          partyId={currentPartyId}
+          userId={user.id}
+          onClose={handleCloseModal}
+          onLeave={handleLeaveParty}
+        />
+      )}
+      {showJoinModal && (
+        <JoinPartyModal
+          userId={user.id}
+          onClose={() => setShowJoinModal(false)}
+          onJoinSuccess={handleJoinPartySuccess}
+        />
+      )}
     </div>
   );
 };
