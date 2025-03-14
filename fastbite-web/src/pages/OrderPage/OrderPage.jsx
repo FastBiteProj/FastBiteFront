@@ -19,7 +19,7 @@ import * as signalR from "@microsoft/signalr";
 import { 
   createParty, 
   getParty, 
-  getPartyCart,
+  getPartyCart, 
   leaveParty
 } from '../../redux/reducers/partySlice';
 import { PartyCodeModal } from '../../components/PartyCodeModal/PartyCodeModal';

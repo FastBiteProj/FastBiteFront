@@ -25,7 +25,7 @@ export const AdminPanelMainPage = () => {
         </div>
         <div className="admin-comps div7"></div>
 
-
+ 
         
       </div>
     </div>

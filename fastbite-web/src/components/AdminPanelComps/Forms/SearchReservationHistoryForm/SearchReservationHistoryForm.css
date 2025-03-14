@@ -6,7 +6,7 @@
   max-width: 1200px;
   margin: 0 auto;
 }
-
+ 
 .search-reservation-form h3 {
   text-align: center;
   margin-bottom: 25px;
@@ -36,19 +36,18 @@
 }
 
 .search-button {
-  padding: 10px 20px;
-  font-size: 14px;
+  padding: 12px;
+  background-color: lightgray;
   border: none;
-  background-color: #ffd700;
-  color: black;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-weight: bold;
+  font-size: 16px;
+  font-family: 'Ubuntu Mono', monospace;
+  margin-top: 10px;
 }
 
 .search-button:hover {
-  background-color: #ffc700;
+  background-color: rgb(238, 238, 238);
 }
 
 .results-container {

@@ -37,7 +37,7 @@
 }
 
 .reservations-table-container {
-  max-height: 600px;
+  max-height: 280px;
   overflow-y: auto;
   margin: 20px 0;
 }

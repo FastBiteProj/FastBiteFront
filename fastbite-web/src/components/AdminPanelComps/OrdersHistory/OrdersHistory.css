@@ -15,14 +15,23 @@
 .orders-history table {
   width: 100%;
   border-collapse: collapse;
+  display: block;
+}
+
+.orders-history thead {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 2;
 }
 
 .orders-table-container {
-  max-height: 400px; /* Установите максимальную высоту */
-  overflow-y: auto;  /* Включите вертикальную прокрутку */
-  border: 1px solid #ddd; /* Добавьте границу для лучшей видимости */
-  border-radius: 4px; /* Добавьте закругленные углы */
-  margin-bottom: 20px; /* Отступ снизу для отделения от других элементов */
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 20px;
 }
 
 .orders-history th,
@@ -30,6 +39,7 @@
   padding: 12px;
   text-align: left;
   font-size: 16px;
+  min-width: 120px; /* Чтобы таблица не схлопывалась */
 }
 
 .orders-history th {

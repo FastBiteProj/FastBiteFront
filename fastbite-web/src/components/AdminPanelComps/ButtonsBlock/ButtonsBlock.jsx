@@ -20,10 +20,6 @@ export const ButtonsBlock = () => {
         Add Dish
       </button>
 
-      <button className="btn-block add-reservation" onClick={openAddDishModal}>
-        Add Category
-      </button>
-
       <button className="btn-block add-reservation" onClick={openCreateReservationModal}>
         Create Reservation
       </button>

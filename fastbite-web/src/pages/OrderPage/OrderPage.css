@@ -169,7 +169,8 @@
 }
 
 .OrderPage__confirm-button,
-.OrderPage__clear-button {
+.OrderPage__clear-button,
+.OrderPage__party-button {
   background: linear-gradient(135deg, #face8d, #d4a373);
   width: 100%;
   border: none;
@@ -178,6 +179,7 @@
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
+  text-wrap: nowrap;
 }
 
 .OrderPage__confirm-button:hover,

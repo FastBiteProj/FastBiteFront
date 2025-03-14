@@ -1,4 +1,6 @@
 .menu-list {
+  display: flex;
+  flex-direction: column;
   font-family: "Ubuntu Mono", monospace;
   padding: 5px;
   border-radius: 10px;
@@ -8,6 +10,7 @@
   margin: 0 auto;
   height: 100%;
 }
+
 
 .menu-title {
   text-align: center;
@@ -23,6 +26,7 @@
   padding: 10px;
   flex-grow: 1;
 }
+
 
 .menu-item {
   display: flex;

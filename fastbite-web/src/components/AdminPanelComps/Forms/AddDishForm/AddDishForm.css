@@ -16,7 +16,7 @@
 
 .adf-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; 
   gap: 20px;
 }
 
@@ -82,7 +82,7 @@
 
 .adf-form button {
   padding: 12px;
-  background-color: #face8d;
+  background-color: lightgray;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -92,7 +92,7 @@
 }
 
 .adf-form button:hover {
-  background-color: #e0b777;
+  background-color: rgb(238, 238, 238);
 }
 
 .adf-form .char-count {

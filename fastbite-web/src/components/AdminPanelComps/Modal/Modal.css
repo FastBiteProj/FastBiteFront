@@ -36,4 +36,17 @@
   .modal-close-btn:hover {
     color: gray;
   }
+  .form button {
+    padding: 12px;
+    background-color: lightgray;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Ubuntu Mono', monospace;
+    margin-top: 10px;
+  }
   
+  .form button:hover {
+    background-color: rgb(238, 238, 238);
+  }

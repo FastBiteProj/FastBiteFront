@@ -14,5 +14,5 @@ const Modal = ({ isOpen, closeModal, content }) => {
     </div>
   );
 };
-
+ 
 export default Modal;
