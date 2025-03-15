@@ -48,8 +48,8 @@ export const PartyCodeModal = ({ partyId, userId, onClose, onLeave }) => {
 
   if (loading) {
     return (
-      <div className="modal-overlay">
-        <div className="modal-content">
+      <div className="party-modal-overlay">
+        <div className="party-modal-content">
           <h2>Loading party information...</h2>
         </div>
       </div>
@@ -58,19 +58,19 @@ export const PartyCodeModal = ({ partyId, userId, onClose, onLeave }) => {
 
   if (error) {
     return (
-      <div className="modal-overlay">
-        <div className="modal-content">
+      <div className="party-modal-overlay">
+        <div className="party-modal-content">
           <h2>Error</h2>
           <p>{error}</p>
-          <button className="close-button" onClick={onClose}>Close</button>
+          <button className="party-close-button" onClick={onClose}>Close</button>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="party-modal-overlay">
+      <div className="party-modal-content">
         <h2>Party Information</h2>
         
         {partyData && (
@@ -79,16 +79,16 @@ export const PartyCodeModal = ({ partyId, userId, onClose, onLeave }) => {
               <div className="party-code" onClick={handleCopyPartyCode}>
                 <label>Party Code:</label>
                 <span>{partyData.partyId}</span>
-                <div className="copy-hint">Click to copy</div>
+                <div className="party-copy-hint">Click to copy</div>
               </div>
 
               <div className="party-details">
-                <div className="detail-item">
+                <div className="party-detail-item">
                   <label>Table Number:</label>
                   <span>{partyData.tableId}</span>
                 </div>
 
-                <div className="detail-item">
+                <div className="party-detail-item">
                   <label>Members:</label>
                   <span>{partyData.memberIds.length}</span>
                 </div>
@@ -97,9 +97,9 @@ export const PartyCodeModal = ({ partyId, userId, onClose, onLeave }) => {
               {partyData.orderItems.length > 0 && (
                 <div className="party-orders">
                   <h3>Order Items</h3>
-                  <div className="order-items-list">
+                  <div className="party-order-items-list">
                     {partyData.orderItems.map((item, index) => (
-                      <div key={index} className="order-item">
+                      <div key={index} className="party-order-item">
                         <span>{item.productName}</span>
                         <span>Quantity: {item.quantity}</span>
                         <span>Price: ${item.price}</span>
@@ -110,11 +110,11 @@ export const PartyCodeModal = ({ partyId, userId, onClose, onLeave }) => {
               )}
             </div>
 
-            <div className="modal-buttons">
-              <button className="leave-button" onClick={handleLeaveParty}>
+            <div className="party-modal-buttons">
+              <button className="party-leave-button" onClick={handleLeaveParty}>
                 Leave Party
               </button>
-              <button className="close-button" onClick={onClose}>
+              <button className="party-close-button" onClick={onClose}>
                 Close
               </button>
             </div>

@@ -16,14 +16,14 @@ import { fetchTables } from "../../redux/reducers/reservationSlice";
 import { OrderTimer } from "../../components/OrderTimer/OrderTimer";
 import { ORDER_TIMESTAMP_KEY } from "../../constants/orderConstants";
 import * as signalR from "@microsoft/signalr";
-import { 
-  createParty, 
-  getParty, 
-  getPartyCart, 
-  leaveParty
-} from '../../redux/reducers/partySlice';
-import { PartyCodeModal } from '../../components/PartyCodeModal/PartyCodeModal';
-import { JoinPartyModal } from '../../components/JoinPartyModal/JoinPartyModal';
+import {
+  createParty,
+  getParty,
+  getPartyCart,
+  leaveParty,
+} from "../../redux/reducers/partySlice";
+import { PartyCodeModal } from "../../components/PartyCodeModal/PartyCodeModal";
+import { JoinPartyModal } from "../../components/JoinPartyModal/JoinPartyModal";
 
 export const OrderPage = () => {
   const { t, i18n } = useTranslation();
@@ -55,22 +55,24 @@ export const OrderPage = () => {
     });
   }, [dispatch]);
 
-
   useEffect(() => {
     const connection = new signalR.HubConnectionBuilder()
       .withUrl("http://localhost:5156/orderHub")
       .withAutomaticReconnect()
       .build();
 
-    connection.start()
+    connection
+      .start()
       .then(() => console.log("Connected to OrderHub"))
-      .catch(err => console.error("Error While connecting to orderHub: ", err));
+      .catch((err) =>
+        console.error("Error While connecting to orderHub: ", err)
+      );
 
     connection.on("ReceiveOrderUpdate", () => {
       if (user && user.id) {
         console.log("Update of Cart");
         dispatch(fetchCartFromRedis({ userId: user.id }));
-      } 
+      }
     });
 
     return () => {
@@ -80,7 +82,7 @@ export const OrderPage = () => {
 
   useEffect(() => {
     if (user && user.id) {
-      console.log('User', user.id);
+      console.log("User", user.id);
       dispatch(fetchCartFromRedis({ userId: user.id }));
     }
   }, [dispatch, user?.id]);
@@ -95,18 +97,18 @@ export const OrderPage = () => {
             setCurrentPartyId(result.partyId);
           }
 
-          console.log(result.partyCode, result.partyId)
+          console.log(result.partyCode, result.partyId);
         } catch (error) {
-          console.error('Error checking party status:', error);
+          console.error("Error checking party status:", error);
         }
       }
     };
-    
+
     checkPartyStatus();
   }, [dispatch, user?.id]);
 
   useEffect(() => {
-    const savedPartyId = localStorage.getItem('currentPartyId');
+    const savedPartyId = localStorage.getItem("currentPartyId");
     if (savedPartyId) {
       setCurrentPartyId(savedPartyId);
       setIsInParty(true);
@@ -131,7 +133,7 @@ export const OrderPage = () => {
         dispatch(fetchCartFromRedis({ userId: user.id }));
       }
     } catch (error) {
-      console.error('Error clearing cart:', error);
+      console.error("Error clearing cart:", error);
     }
   };
 
@@ -164,7 +166,7 @@ export const OrderPage = () => {
       }
       navigate("/menu");
     } catch (error) {
-      console.error('Error handling new order:', error);
+      console.error("Error handling new order:", error);
     }
   };
 
@@ -179,7 +181,7 @@ export const OrderPage = () => {
       await dispatch(removeProductFromCart({ userId, productId })).unwrap();
       dispatch(fetchCartFromRedis({ userId }));
     } catch (error) {
-      console.error('Error removing product:', error);
+      console.error("Error removing product:", error);
     }
   };
 
@@ -189,20 +191,22 @@ export const OrderPage = () => {
         alert(t("order.pleaseSelectTable"));
         return;
       }
-      
-      const result = await dispatch(createParty({
-        ownerId: user.id,
-        tableId: parseInt(selectedTable)
-      })).unwrap();
-      
-      console.log('Created party ID:', result);
 
-      localStorage.setItem('currentPartyId', result);
+      const result = await dispatch(
+        createParty({
+          ownerId: user.id,
+          tableId: parseInt(selectedTable),
+        })
+      ).unwrap();
+
+      console.log("Created party ID:", result);
+
+      localStorage.setItem("currentPartyId", result);
       setCurrentPartyId(result);
       setIsInParty(true);
       setShowPartyModal(true);
     } catch (error) {
-      console.error('Error creating party:', error);
+      console.error("Error creating party:", error);
       alert(t("order.errorCreatingParty"));
     }
   };
@@ -212,20 +216,21 @@ export const OrderPage = () => {
     setPartyCode(null);
   };
 
-
   const handleLeaveParty = async () => {
     try {
-      await dispatch(leaveParty({
-        partyId: currentPartyId,
-        userId: user.id
-      })).unwrap();
-      
-      localStorage.removeItem('currentPartyId');
+      await dispatch(
+        leaveParty({
+          partyId: currentPartyId,
+          userId: user.id,
+        })
+      ).unwrap();
+
+      localStorage.removeItem("currentPartyId");
       setCurrentPartyId(null);
       setIsInParty(false);
       setShowPartyModal(false);
     } catch (error) {
-      console.error('Error leaving party:', error);
+      console.error("Error leaving party:", error);
     }
   };
 
@@ -300,46 +305,51 @@ export const OrderPage = () => {
                 </p>
               )}
             </div>
-            <div className="OrderPage__total">
-              <h2>
-                {t("order.total")}: ${totalPrice}
-              </h2>
+            <div className="OrderPage__test">
+              <div className="OrderPage__total">
+                <h2>
+                  {t("order.total")}: ${totalPrice}
+                </h2>
+                <div className="OrderPage__table-select">
+                  <label htmlFor="tableSelect">
+                    {t("order.selectTable")}:{" "}
+                  </label>
+                  <select
+                    id="tableSelect"
+                    value={selectedTable}
+                    onChange={(e) => setSelectedTable(e.target.value)}
+                    required
+                  >
+                    <option value="">{t("order.chooseTable")}</option>
+                    {tables.map((table) => (
+                      <option key={table.id} value={table.tableNumber}>
+                        {t("order.tableNumber")} {table.tableNumber}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
-              <div className="OrderPage__table-select">
-                <label htmlFor="tableSelect">{t("order.selectTable")}: </label>
-                <select
-                  id="tableSelect"
-                  value={selectedTable}
-                  onChange={(e) => setSelectedTable(e.target.value)}
-                  required
-                >
-                  <option value="">{t("order.chooseTable")}</option>
-                  {tables.map((table) => (
-                    <option key={table.id} value={table.tableNumber}>
-                      {t("order.tableNumber")} {table.tableNumber}
-                    </option>
-                  ))}
-                </select>
+                <div className="OrderPage__buttons">
+                  <button
+                    className="OrderPage__confirm-button"
+                    onClick={handleConfirmOrder}
+                  >
+                    {t("order.confirmOrder")}
+                  </button>
+                  <button
+                    className="OrderPage__clear-button"
+                    onClick={handleClearOrder}
+                  >
+                    {t("order.clearOrder")}
+                  </button>
+                </div>
               </div>
-
-              <div className="OrderPage__buttons">
-                <button
-                  className="OrderPage__confirm-button"
-                  onClick={handleConfirmOrder}
-                >
-                  {t("order.confirmOrder")}
-                </button>
-                <button
-                  className="OrderPage__clear-button"
-                  onClick={handleClearOrder}
-                >
-                  {t("order.clearOrder")}
-                </button>
+              <div className="OrderPage__party-block">
                 {isInParty ? (
-                  <button 
+                  <button
                     className="OrderPage__party-button"
                     onClick={() => {
-                      console.log('Current Party ID:', currentPartyId);
+                      console.log("Current Party ID:", currentPartyId);
                       setShowPartyModal(true);
                     }}
                   >
@@ -347,7 +357,7 @@ export const OrderPage = () => {
                   </button>
                 ) : (
                   <>
-                    <button 
+                    <button
                       className="OrderPage__party-button"
                       onClick={handleCreateParty}
                     >
@@ -363,7 +373,6 @@ export const OrderPage = () => {
                 )}
               </div>
             </div>
-
           </>
         ) : (
           <PaymentForm
@@ -389,7 +398,7 @@ export const OrderPage = () => {
         )}
       </div>
       {showPartyModal && currentPartyId && (
-        <PartyCodeModal 
+        <PartyCodeModal
           partyId={currentPartyId}
           userId={user.id}
           onClose={handleCloseModal}
