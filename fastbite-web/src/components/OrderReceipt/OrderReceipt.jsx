@@ -7,9 +7,11 @@ export const OrderReceipt = ({ order, totalPrice, language }) => {
 
   const getTranslation = (product) => {
     if (!product.translations || product.translations.length === 0) {
-      return { name: "N/A", description: "" }; 
+      return { name: "N/A", description: "" };
     }
-    const translation = product.translations.find((t) => t.languageCode === language);
+    const translation = product.translations.find(
+      (t) => t.languageCode === language
+    );
     return translation || product.translations[0];
   };
 
@@ -46,7 +48,7 @@ export const OrderReceipt = ({ order, totalPrice, language }) => {
               <tr key={item.uniqueID}>
                 <td>{index + 1}</td>
                 <td>{getTranslation(item).name}</td>
-                <td>${item.price.toFixed(2)}</td>
+                <td>${item.totalPrice}</td>
               </tr>
             ))}
           </tbody>

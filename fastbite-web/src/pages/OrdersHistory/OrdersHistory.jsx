@@ -4,6 +4,7 @@ import { Navbar } from "../../components/Navbar/Navbar";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrders } from '../../redux/reducers/profileSlice';
+import React from 'react';
 
 export const OrdersHistory = () => {
   const { t } = useTranslation();
@@ -77,9 +78,8 @@ export const OrdersHistory = () => {
             </thead>
             <tbody>
               {orders.map((order, index) => (
-                <>
+                <React.Fragment key={order.id || `order-${index}`}>
                   <tr
-                    key={index}
                     onClick={() => toggleExpand(index)}
                     className="OrdersHistory__row"
                   >
@@ -101,7 +101,7 @@ export const OrdersHistory = () => {
                           </thead>
                           <tbody>
                             {order.productNames?.map((product, detailIndex) => (
-                              <tr key={detailIndex}>
+                              <tr key={`${order.id}-product-${detailIndex}`}>
                                 <td>{product.productName}</td>
                                 <td>{product.quantity}</td>
                               </tr>
@@ -111,7 +111,7 @@ export const OrdersHistory = () => {
                       </td>
                     </tr>
                   )}
-                </>
+                </React.Fragment>
               ))}
             </tbody>
           </table>

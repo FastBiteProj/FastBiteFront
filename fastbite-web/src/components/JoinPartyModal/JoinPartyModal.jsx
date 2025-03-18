@@ -15,12 +15,12 @@ export const JoinPartyModal = ({ userId, onClose, onJoinSuccess }) => {
     }
 
     try {
-      await dispatch(joinParty({
+      const result = await dispatch(joinParty({
         partyCode: partyId.trim(),
         userId: userId
       })).unwrap();
       
-      onJoinSuccess();
+      onJoinSuccess(partyId.trim());
       onClose();
     } catch (error) {
       setError('Failed to join party. Please check the ID and try again.');

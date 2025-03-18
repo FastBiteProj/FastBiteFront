@@ -42,15 +42,26 @@ export const PaymentForm = ({ totalPrice, onSuccess, onCancel, clientId, orderDa
   const handleCardPayment = async (e) => {
     e.preventDefault();
     try {
-      const finalOrderData = {
-        ...orderData,
-        paymentType: PaymentType.CARD,
-        isPaid: true,
-        tableId: Number(orderData.tableId)
-      };
+      // Проверяем, откуда пришел заказ (из резервации или обычного заказа)
+      const transformedOrderData = orderData.productNames ? 
+        // Для резервации
+        {
+          userId: orderData.userId,
+          tableNumber: orderData.tableNumber,
+          productNames: orderData.productNames // Уже в правильном формате
+        } :
+        // Для обычного заказа
+        {
+          userId: orderData.userId,
+          tableNumber: orderData.tableNumber,
+          productNames: orderData.products.map(product => ({
+            productName: product.productName,
+            quantity: product.quantity
+          }))
+        };
 
-      console.log("Creating card order with data:", finalOrderData);
-      const response = await dispatch(createOrder(finalOrderData)).unwrap();
+      console.log("Creating card order with data:", transformedOrderData);
+      const response = await dispatch(createOrder(transformedOrderData)).unwrap();
       console.log("Card order response:", response);
       onSuccess();
     } catch (error) {
@@ -61,19 +72,29 @@ export const PaymentForm = ({ totalPrice, onSuccess, onCancel, clientId, orderDa
 
   const handleCashPayment = async () => {
     try {
-      console.log('PaymentType values:', PaymentType);
-      
-      const finalOrderData = {
-        ...orderData,
-        paymentType: Number(PaymentType.CASH),
-        isPaid: false,
-        tableId: Number(orderData.tableId)
-      };
+      const transformedOrderData = orderData.productNames ? 
+        // Для резервации
+        {
+          userId: orderData.userId,
+          tableNumber: orderData.tableNumber,
+          productNames: orderData.productNames,
+          paymentType: Number(PaymentType.CASH),
+          isPaid: false
+        } :
+        // Для обычного заказа
+        {
+          userId: orderData.userId,
+          tableNumber: orderData.tableNumber,
+          productNames: orderData.products.map(product => ({
+            productName: product.productName,
+            quantity: product.quantity
+          })),
+          paymentType: Number(PaymentType.CASH),
+          isPaid: false
+        };
 
-      console.log("Cash payment type:", PaymentType.CASH);
-      console.log("Creating cash order with data:", finalOrderData);
-
-      const response = await dispatch(createOrder(finalOrderData)).unwrap();
+      console.log("Creating cash order with data:", transformedOrderData);
+      const response = await dispatch(createOrder(transformedOrderData)).unwrap();
       console.log("Cash order response:", response);
       onSuccess();
     } catch (error) {
@@ -186,15 +207,29 @@ export const PaymentForm = ({ totalPrice, onSuccess, onCancel, clientId, orderDa
             }}
             onApprove={(data, actions) => {
               return actions.order.capture().then((details) => {
-                const finalOrderData = {
-                  ...orderData,
-                  paymentType: PaymentType.ONLINE,
-                  isPaid: true,
-                  tableId: Number(orderData.tableId)
-                };
+                const transformedOrderData = orderData.productNames ? 
+                  // Для резервации
+                  {
+                    userId: orderData.userId,
+                    tableNumber: orderData.tableNumber,
+                    productNames: orderData.productNames,
+                    paymentType: PaymentType.ONLINE,
+                    isPaid: true
+                  } :
+                  // Для обычного заказа
+                  {
+                    userId: orderData.userId,
+                    tableNumber: orderData.tableNumber,
+                    productNames: orderData.products.map(product => ({
+                      productName: product.productName,
+                      quantity: product.quantity
+                    })),
+                    paymentType: PaymentType.ONLINE,
+                    isPaid: true
+                  };
 
-                console.log('Creating PayPal order with data:', finalOrderData);
-                return dispatch(createOrder(finalOrderData))
+                console.log('Creating PayPal order with data:', transformedOrderData);
+                return dispatch(createOrder(transformedOrderData))
                   .unwrap()
                   .then((response) => {
                     console.log("PayPal order response:", response);

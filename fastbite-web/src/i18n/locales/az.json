@@ -70,7 +70,13 @@
       "confirmOrderReservation": "Sifarişi və rezervasiyanı təsdiqləyin",
       "loginRequired": "Rezervasiya etmək üçün hesabınıza daxil olmalısınız.",
       "selectDate": "Davam etmək üçün tarix seçin.",
-      "reservationSuccess": "Rezervasiya və sifariş uğurla təsdiqləndi!"
+      "reservationSuccess": "Rezervasiya və sifariş uğurla təsdiqləndi!",
+      "selectTime": "Zəhmət olmasa başlama və bitmə vaxtını seçin",
+      "invalidTimeRange": "Bitmə vaxtı başlama vaxtından sonra olmalıdır",
+      "selectTable": "Zəhmət olmasa masa seçin",
+      "tooManyGuests": "Bu masa maksimum {{capacity}} qonaq qəbul edə bilər",
+      "tableAlreadyReserved": "Bu masa seçilmiş vaxtda artıq rezerv edilib",
+      "generalError": "Rezervasiya zamanı xəta baş verdi. Zəhmət olmasa daxil edilmiş məlumatları yoxlayın"
     },
     "guests": "Qonaq sayı",
     "enterGuests": "Qonaq sayını daxil edin"
@@ -99,6 +105,8 @@
     "showParty": "Partiya'yi Göstər",
     "errorShowingParty": "Partiya məlumatını göstərən xəta",
     "leaveParty": "Partiya'ni tərk et",
+    "showParty": "Partiya'yi Göstər",
+    "createParty": "Partiya Yarat",
     "errorLeavingParty": "Partiyadan çıxmaq xətası",
     "joinPartyTitle": "Partiya'ya qoşul",
     "enterPartyCode": "Partiya kodunu daxil edin",

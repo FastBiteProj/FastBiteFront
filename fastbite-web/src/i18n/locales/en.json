@@ -70,7 +70,13 @@
       "confirmOrderReservation": "Confirm Order & Reservation",
       "loginRequired": "To make a reservation you must log in to your account.",
       "selectDate": "Please select a date to proceed.",
-      "reservationSuccess": "Reservation and order confirmed successfully!"
+      "reservationSuccess": "Reservation and order confirmed successfully!",
+      "selectTime": "Please select a start and end time",
+      "invalidTimeRange": "The end time must be later than the start time",
+      "selectTable": "Please select a table",
+      "tooManyGuests": "This table can accommodate a maximum of {{capacity}} guests",
+      "tableAlreadyReserved": "This table is already reserved for the selected time",
+      "generalError": "An error occurred while creating the reservation. Please check the entered data"
     },
     "guests": "Number of Guests",
     "enterGuests": "Enter number of guests"
@@ -96,11 +102,12 @@
     "timeRemaining": "Time remaining until order is cleared",
     "pleaseSelectTable": "Please select a table first",
     "errorCreatingParty": "Error creating party. Please try again.",
+    "createParty": "Create Party",
     "showParty": "Show Party",
     "errorShowingParty": "Error showing party information",
     "leaveParty": "Leave Party",
     "errorLeavingParty": "Error leaving party",
-    "joinPartyTitle": "Join Party",
+    "joinParty": "Join Party",
     "enterPartyCode": "Enter party code",
     "join": "Join",
     "cancel": "Cancel",

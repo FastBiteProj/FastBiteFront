@@ -4,11 +4,13 @@ import { useTranslation } from "react-i18next";
 import { fetchProducts } from "../../redux/reducers/productSlice";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { addProductToCart } from '../../redux/reducers/orderSlice.js';
+import { addToPartyCart } from "../../redux/reducers/partySlice.js";
 import { Notification } from "../../components/Notification/Notification";
 import "./MenuPage.css";
 import { Link } from "react-router-dom";
 import  Loader from '../../components/Loader/Loader.jsx'
- 
+import * as signalR from "@microsoft/signalr";
+
 export const MenuPage = () => {
   const { t, i18n } = useTranslation();
   const [activeCategory, setActiveCategory] = useState(null);
@@ -29,14 +31,72 @@ export const MenuPage = () => {
     }
   }, [dispatch, productsStatus]);
 
-  
+  useEffect(() => {
+    const connection = new signalR.HubConnectionBuilder()
+      .withUrl("http://localhost:5156/orderHub")
+      .withAutomaticReconnect([0, 2000, 5000, 10000, 20000]) 
+      .configureLogging(signalR.LogLevel.Information)
+      .build();
 
-  const handleAddToOrder = (dish) => {
-    console.log(user, user.id)
-    console.log(dish, dish.id)
-    dispatch(addProductToCart({ userId: user.id, productId: dish.id }));
-  
-    showNotification(`${getTranslation(dish).name} ${t("menu.addedToOrder")}`);
+    const startConnection = async () => {
+      try {
+        await connection.start();
+        console.log("Connected to CartHub from MenuPage");
+        
+        const currentPartyId = localStorage.getItem('currentPartyId');
+        if (currentPartyId) {
+          await connection.invoke("JoinPartyGroup", currentPartyId);
+          console.log(`Joined party group: ${currentPartyId}`);
+        }
+      } catch (err) {
+        console.error("Error connecting to CartHub:", err);
+      }
+    };
+
+    connection.onclose(async () => {
+      console.log("Connection closed, attempting to reconnect...");
+      await startConnection();
+    });
+
+    startConnection();
+
+    return () => {
+      if (connection.state === signalR.HubConnectionState.Connected) {
+        const currentPartyId = localStorage.getItem('currentPartyId');
+        if (currentPartyId) {
+          connection.invoke("LeavePartyGroup", currentPartyId)
+            .catch(err => console.error("Error leaving party group:", err));
+        }
+        connection.stop()
+          .catch(err => console.error("Error stopping connection:", err));
+      }
+    };
+  }, []);
+
+  const handleAddToOrder = async (dish) => {
+    console.log(user, user.id);
+    console.log(dish, dish.id);
+    
+    const currentPartyId = localStorage.getItem('currentPartyId');
+    
+    try {
+      if (currentPartyId) {
+        await dispatch(addToPartyCart({ 
+          partyId: currentPartyId,
+          productId: dish.id 
+        })).unwrap();
+      } else {
+        await dispatch(addProductToCart({ 
+          userId: user.id, 
+          productId: dish.id 
+        })).unwrap();
+      }
+      
+      showNotification(`${getTranslation(dish).name} ${t("menu.addedToOrder")}`);
+    } catch (error) {
+      console.error('Error adding product to cart:', error);
+      showNotification(t("menu.errorAddingToOrder"));
+    }
   };
 
   const showNotification = (message) => {

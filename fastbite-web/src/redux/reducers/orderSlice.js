@@ -182,7 +182,7 @@ export const removeProductFromCart = createAsyncThunk(
 
 export const clearCart = createAsyncThunk(
   "order/clearCart", 
-  async (userId, { rejectWithValue }) => {
+  async (clearCartRequest, { rejectWithValue }) => {
     try {
       const apiData = {
         Url: `${baseUrl}/api/v1/Cart/clearCart`,
@@ -190,8 +190,34 @@ export const clearCart = createAsyncThunk(
         Headers: {
           'Content-Type': 'application/json'
         },
-        Data: userId
+        Data: {
+          UserId: clearCartRequest.request.userId
+        }
       };
+      console.log('Clearing cart with data:', apiData.Data);
+      const response = await ApiManager.apiRequest(apiData);
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const clearCartParty = createAsyncThunk(
+  "order/clearCartParty", 
+  async (clearCartRequest, { rejectWithValue }) => {
+    try {
+      const apiData = {
+        Url: `${baseUrl}/api/v1/party/clearPartyCart`,
+        Method: 'POST',
+        Headers: {
+          'Content-Type': 'application/json'
+        },
+        Data: {
+          PartyId: clearCartRequest.request.partyId
+        }
+      };
+      console.log('Clearing party cart with data:', apiData.Data);
       const response = await ApiManager.apiRequest(apiData);
       return response;
     } catch (error) {

@@ -82,8 +82,35 @@ export const ReservePage = () => {
       return;
     }
 
+    if (!time.start || !time.end) {
+      setModalContent(t("reserve.modal.selectTime"));
+      setModalOpen(true);
+      return;
+    }
+
+    const startHour = parseInt(time.start.split(":")[0]);
+    const endHour = parseInt(time.end.split(":")[0]);
+    if (startHour >= endHour) {
+      setModalContent(t("reserve.modal.invalidTimeRange"));
+      setModalOpen(true);
+      return;
+    }
+
+    if (!table) {
+      setModalContent(t("reserve.modal.selectTable"));
+      setModalOpen(true);
+      return;
+    }
+
     if (!guests) {
       setModalContent(t("reserve.modal.enterGuests"));
+      setModalOpen(true);
+      return;
+    }
+
+    const selectedTable = tables.find(t => t.tableNumber.toString() === table);
+    if (selectedTable && parseInt(guests) > selectedTable.tableCapacity) {
+      setModalContent(t("reserve.modal.tooManyGuests", { capacity: selectedTable.tableCapacity }));
       setModalOpen(true);
       return;
     }
@@ -99,15 +126,14 @@ export const ReservePage = () => {
 
   const handlePaymentSuccess = async () => {
     const orderData = {
-      productNames: Object.entries(orders.items).map(([id, item]) => ({
-        productName: item.name,
-        quantity: item.quantity,
-      })),
       userId: user.id,
       totalPrice: orders.total,
       tableNumber: parseInt(table),
       confirmationDate: new Date().toISOString(),
-      isPaid: true,
+      productNames: Object.entries(orders.items).map(([id, item]) => ({
+        productName: item.name,
+        quantity: item.quantity
+      })),
     };
 
     await createReservationHandler(orderData);
@@ -132,7 +158,7 @@ export const ReservePage = () => {
   
       console.log("Отправка данных бронирования:", newReservation);
   
-      await dispatch(createReservation(newReservation)).unwrap();
+      const result = await dispatch(createReservation(newReservation)).unwrap();
   
       setModalContent(t("reserve.modal.reservationSuccess"));
       setModalOpen(true);
@@ -146,7 +172,17 @@ export const ReservePage = () => {
       setBlurred(true);
     } catch (error) {
       console.log("Ошибка при бронировании:", error);
-      setModalContent(error.message || t("reserve.modal.error"));
+      
+      if (error.includes("Table is already reserved")) {
+        setModalContent(t("reserve.modal.tableAlreadyReserved"));
+        setTable("");
+      } else if (error.includes("Invalid time range")) {
+        setModalContent(t("reserve.modal.invalidTimeRange"));
+        setTime({ start: "", end: "" });
+      } else {
+        setModalContent(t("reserve.modal.generalError"));
+      }
+      
       setModalOpen(true);
     }
   };
@@ -306,6 +342,22 @@ export const ReservePage = () => {
     );
   };
 
+  const handleTimeChange = (type, value) => {
+    setTime(prev => ({ ...prev, [type]: value }));
+    
+    if (modalContent.includes("time")) {
+      setModalOpen(false);
+    }
+  };
+
+  const handleGuestsChange = (value) => {
+    setGuests(value);
+    
+    if (modalContent.includes("guests")) {
+      setModalOpen(false);
+    }
+  };
+
   return (
     <div className="ReservePage">
       <div className="ReservePage__left-side">
@@ -332,14 +384,13 @@ export const ReservePage = () => {
             source="reservation"
             reservationData={reservationData}
             orderData={{
-              id: crypto.randomUUID(),
               userId: user.id,
               totalPrice: orders.total,
               tableNumber: parseInt(table),
               confirmationDate: new Date().toISOString(),
               productNames: Object.entries(orders.items).map(([id, item]) => ({
                 productName: item.name,
-                quantity: item.quantity,
+                quantity: item.quantity
               })),
             }}
           />
@@ -393,9 +444,7 @@ export const ReservePage = () => {
                     id="startTime"
                     name="startTime"
                     value={time.start}
-                    onChange={(e) =>
-                      setTime((prev) => ({ ...prev, start: e.target.value }))
-                    }
+                    onChange={(e) => handleTimeChange("start", e.target.value)}
                   >
                     <option value="">{t("reserve.selectStartTime")}</option>
                     {availableTimes.map((time) => (
@@ -412,9 +461,7 @@ export const ReservePage = () => {
                     id="endTime"
                     name="endTime"
                     value={time.end}
-                    onChange={(e) =>
-                      setTime((prev) => ({ ...prev, end: e.target.value }))
-                    }
+                    onChange={(e) => handleTimeChange("end", e.target.value)}
                   >
                     <option value="">{t("reserve.selectEndTime")}</option>
                     {availableTimes.map((time) => (
@@ -434,7 +481,7 @@ export const ReservePage = () => {
                     min="1"
                     max="10"
                     value={guests}
-                    onChange={(e) => setGuests(e.target.value)}
+                    onChange={(e) => handleGuestsChange(e.target.value)}
                     placeholder="1-10"
                   />
                 </div>

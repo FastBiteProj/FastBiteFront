@@ -47,10 +47,12 @@ export const joinParty = createAsyncThunk(
 
 export const getParty = createAsyncThunk(
     'party/getParty',
-    async ({ rejectWithValue }) => {
+    async (userId, { rejectWithValue }) => {
         try {
             const partyId = localStorage.getItem("currentPartyId");
-            console.log("PartyId redux:",partyId)
+            if (!partyId) {
+                return null;
+            }
             const apiData = {
                 Url: `${baseUrl}/api/v1/party/getParty?partyId=${partyId}`, 
                 Method: 'GET',
@@ -61,7 +63,7 @@ export const getParty = createAsyncThunk(
             const response = await ApiManager.apiRequest(apiData);
             return response;
         } catch (error) {
-            return rejectWithValue(error.message);
+            return rejectWithValue(error.message || 'Failed to get party');
         }
     }
 );
@@ -91,7 +93,7 @@ export const getPartyCart = createAsyncThunk(
     async (partyId, { rejectWithValue }) => {
         try {
             const apiData = {
-                Url: `${baseUrl}/api/v1/party/getPartyCart?partyId=${partyId}`,
+                Url: `${baseUrl}/api/v1/party/getParty?partyId=${partyId}`,
                 Method: 'GET',
                 Headers: {
                     'Content-Type': 'application/json'
@@ -121,6 +123,53 @@ export const leaveParty = createAsyncThunk(
                 }
             };
             const response = await ApiManager.apiRequest(apiData);
+            localStorage.removeItem("currentPartyId");
+            return response;
+        } catch (error) {
+            localStorage.removeItem("currentPartyId");
+            return rejectWithValue(error.message || 'Failed to leave party');
+        }
+    }
+);
+
+export const removeFromPartyCart = createAsyncThunk(
+    'party/removeFromPartyCart',
+    async ({ partyId, productId }, { rejectWithValue }) => {
+        try {
+            const apiData = {
+                Url: `${baseUrl}/api/v1/party/removeFromPartyCart`,
+                Method: 'POST',
+                Headers: {
+                    'Content-Type': 'application/json'
+                },
+                Data: {
+                    PartyId: partyId,
+                    ProductId: productId
+                }
+            };
+            const response = await ApiManager.apiRequest(apiData);
+            return response;
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+export const clearPartyCart = createAsyncThunk(
+    'party/clearPartyCart',
+    async (partyId, { rejectWithValue }) => {
+        try {
+            const apiData = {
+                Url: `${baseUrl}/api/v1/party/clearPartyCart`,
+                Method: 'POST',
+                Headers: {
+                    'Content-Type': 'application/json'
+                },
+                Data: {
+                    PartyId: partyId
+                }
+            };
+            const response = await ApiManager.apiRequest(apiData);
             return response;
         } catch (error) {
             return rejectWithValue(error.message);
@@ -131,6 +180,7 @@ export const leaveParty = createAsyncThunk(
 const initialState = {
     currentParty: null,
     partyCart: [],
+    partyData: null,
     partyLink: null,
     loading: false,
     error: null,
@@ -143,6 +193,7 @@ const partySlice = createSlice({
         clearPartyState: (state) => {
             state.currentParty = null;
             state.partyCart = [];
+            state.partyData = null;
             state.partyLink = null;
             state.error = null;
         },
@@ -207,7 +258,8 @@ const partySlice = createSlice({
             })
             .addCase(getPartyCart.fulfilled, (state, action) => {
                 state.loading = false;
-                state.partyCart = action.payload;
+                state.partyData = action.payload;
+                state.partyCart = action.payload.orderItems || [];
             })
             .addCase(getPartyCart.rejected, (state, action) => {
                 state.loading = false;
@@ -227,9 +279,37 @@ const partySlice = createSlice({
             .addCase(leaveParty.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
+            })
+
+            .addCase(removeFromPartyCart.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(removeFromPartyCart.fulfilled, (state) => {
+                state.loading = false;
+            })
+            .addCase(removeFromPartyCart.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
+
+            .addCase(clearPartyCart.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(clearPartyCart.fulfilled, (state) => {
+                state.loading = false;
+                state.partyCart = [];
+            })
+            .addCase(clearPartyCart.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
             });
     },
 });
+
+export const selectPartyData = (state) => state.party.partyData;
+export const selectPartyCart = (state) => state.party.partyCart;
 
 export const { clearPartyState } = partySlice.actions;
 export default partySlice.reducer;

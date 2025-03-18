@@ -16,20 +16,6 @@
   color: white;
 }
 
-.OrderPage__test {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  align-items: end;
-  border-top: 2px solid rgba(255, 255, 255, 0.3);
-  margin-top: 15px;
-}
-
-* {
-  /* border: 1px solid red; */
-}
-
 .OrderPage__headers {
   display: flex;
   flex-direction: column;
@@ -161,6 +147,7 @@
   font-weight: bold;
   margin: 20px 0;
   letter-spacing: 1px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
   padding-top: 10px;
 }
 
@@ -179,15 +166,6 @@
   align-items: center;
   margin-top: 30px;
   gap: 20px;
-}
-
-.OrderPage__party-block {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  border: 1px solid #face8d;
-  padding: 20px;
-  border-radius: 15px;
 }
 
 .OrderPage__confirm-button,
@@ -399,4 +377,12 @@
   font-size: 18px;
   font-weight: bold;
   color: #333;
+}
+
+.OrderPage__party-table {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+  padding: 10px 0;
+  margin: 10px 0;
 }
