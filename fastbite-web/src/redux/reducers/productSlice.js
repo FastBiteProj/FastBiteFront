@@ -155,41 +155,30 @@ export const uploadProductImage = createAsyncThunk(
 
 export const createProduct = createAsyncThunk(
   'products/createProduct',
-  async (productDto, { rejectWithValue }) => {
+  async (productData, { rejectWithValue }) => {
     try {
-      const token = Cookies.get('token');
-      console.log('Token from cookies:', token);
-
-      const response = await fetch(`${baseUrl}/api/Product/Create`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'accessToken': token
+      const apiData = {
+        Url: `${baseUrl}/api/Product/Create`,
+        Method: 'POST',
+        Headers: {
+          'Content-Type': 'application/json'
         },
-        withCredentials: true,
-        credentials: 'include',
-        body: JSON.stringify(productDto)
-      });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.log('Error response:', errorText);
-        throw new Error(`API Error: ${response.status} ${response.statusText}. ${errorText}`);
-      }
-
-      const result = await response.json();
-      return result;
-    } catch (error) {
-      console.error('Create product error details:', {
-        error,
-        token: Cookies.get('token'),
-        headers: {
-          'Authorization': `Bearer ${Cookies.get('token')}`,
-          'accessToken': Cookies.get('token')
+        Data: {
+          id: productData.id,
+          categoryName: productData.categoryName,
+          imageUrl: productData.imageUrl,
+          price: productData.price,
+          translations: productData.translations,
+          productTags: productData.productTags
         }
-      });
-      return rejectWithValue(error.message || 'Failed to create product');
+      };
+      
+      console.log('Sending API request with data:', apiData.Data);
+      
+      const response = await ApiManager.apiRequest(apiData);
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -212,13 +201,34 @@ export const fetchCategories = createAsyncThunk(
       throw error;
     }
   }
-);;
+);
+
+export const fetchTags = createAsyncThunk(
+  'products/fetchTags',
+  async (_, { rejectWithValue }) => {
+    try {
+      const apiData = {
+        Url: `${baseUrl}/api/Product/tags`,
+        Method: 'GET',
+        Headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+      
+      const response = await ApiManager.apiRequest(apiData);
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 const productSlice = createSlice({
   name: "product",
   initialState: {
     products: [],
     categories: [],
+    tags: [],
     status: "idle",
     error: null,
   },
@@ -295,6 +305,17 @@ const productSlice = createSlice({
       .addCase(fetchCategories.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+      })
+      .addCase(fetchTags.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchTags.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.tags = action.payload;
+      })
+      .addCase(fetchTags.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload;
       });
   },
 });

@@ -155,9 +155,9 @@ export const removeFromPartyCart = createAsyncThunk(
     }
 );
 
-export const clearPartyCart = createAsyncThunk(
-    'party/clearPartyCart',
-    async (partyId, { rejectWithValue }) => {
+export const clearCartParty = createAsyncThunk(
+    'party/clearCartParty',
+    async (clearCartRequest, { rejectWithValue }) => {
         try {
             const apiData = {
                 Url: `${baseUrl}/api/v1/party/clearPartyCart`,
@@ -166,9 +166,10 @@ export const clearPartyCart = createAsyncThunk(
                     'Content-Type': 'application/json'
                 },
                 Data: {
-                    PartyId: partyId
+                    PartyId: clearCartRequest.request.partyId
                 }
             };
+            console.log('Clearing party cart with request:', apiData.Data); 
             const response = await ApiManager.apiRequest(apiData);
             return response;
         } catch (error) {
@@ -293,15 +294,11 @@ const partySlice = createSlice({
                 state.error = action.payload;
             })
 
-            .addCase(clearPartyCart.pending, (state) => {
-                state.loading = true;
-                state.error = null;
-            })
-            .addCase(clearPartyCart.fulfilled, (state) => {
-                state.loading = false;
+            .addCase(clearCartParty.fulfilled, (state) => {
                 state.partyCart = [];
+                state.loading = false;
             })
-            .addCase(clearPartyCart.rejected, (state, action) => {
+            .addCase(clearCartParty.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
             });

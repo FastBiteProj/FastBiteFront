@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { uploadProductImage, createProduct, fetchCategories } from "../../../../redux/reducers/productSlice";
+import { uploadProductImage, createProduct, fetchCategories, fetchTags } from "../../../../redux/reducers/productSlice";
 import "./AddDishForm.css";
+import Select from 'react-select';
 
 export const AddDishForm = ({ closeModal }) => {
   const dispatch = useDispatch();
   const productState = useSelector((state) => state.products);
 
   const categories = productState?.categories || [];
+  const tags = productState?.tags || [];
   const status = productState?.status || 'idle';
   const error = productState?.error;
 
@@ -23,9 +25,43 @@ export const AddDishForm = ({ closeModal }) => {
   const [imageFile, setImageFile] = useState(null);
   const [openAccordion, setOpenAccordion] = useState("default");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedTags, setSelectedTags] = useState([]);
+
+  const tagOptions = tags.map(tag => ({
+    value: tag.name,
+    label: tag.name
+  }));
+
+  const customStyles = {
+    control: (base) => ({
+      ...base,
+      backgroundColor: '#fff',
+      borderColor: '#ddd',
+      '&:hover': {
+        borderColor: '#999'
+      }
+    }),
+    multiValue: (base) => ({
+      ...base,
+      backgroundColor: '#e8f0fe',
+    }),
+    multiValueLabel: (base) => ({
+      ...base,
+      color: '#1a73e8',
+    }),
+    multiValueRemove: (base) => ({
+      ...base,
+      color: '#1a73e8',
+      '&:hover': {
+        backgroundColor: '#d2e3fc',
+        color: '#1a73e8',
+      },
+    }),
+  };
 
   useEffect(() => {
     dispatch(fetchCategories());
+    dispatch(fetchTags());
   }, [dispatch]);
 
   const maxDescriptionLength = 300;
@@ -115,13 +151,19 @@ export const AddDishForm = ({ closeModal }) => {
         }
       ];
 
+      const formattedTags = selectedTags.map(tag => ({
+        name: tag.value
+      }));
+
       const productData = {
+        id: "00000000-0000-0000-0000-000000000000",
         categoryName: selectedCategory,
-        price: parseInt(dishPrice),
         imageUrl: imageUrl,
-        translations: translations
+        price: parseInt(dishPrice),
+        translations: translations,
+        productTags: formattedTags
       };
-      console.log("productData", productData);
+      console.log("Sending product data:", productData);
 
       console.log('Current state before dispatch:', {
         selectedCategory,
@@ -142,6 +184,7 @@ export const AddDishForm = ({ closeModal }) => {
       setSelectedCategory("");
       setDishImage(null);
       setImageFile(null);
+      setSelectedTags([]);
 
     } catch (err) {
       console.error('Failed to create product:', err);
@@ -248,6 +291,23 @@ export const AddDishForm = ({ closeModal }) => {
             {dishImage && (
               <img src={dishImage} alt="Dish" className="dish-image-preview" />
             )}
+          </label>
+
+          <label className="tags-label">
+            Tags:
+            <Select
+              isMulti
+              options={tagOptions}
+              value={selectedTags}
+              onChange={setSelectedTags}
+              styles={customStyles}
+              isDisabled={isSubmitting || status === 'loading'}
+              placeholder={status === 'loading' ? 'Loading tags...' : 'Select tags...'}
+              className="tags-select"
+              closeMenuOnSelect={false}
+              noOptionsMessage={() => "No tags available"}
+              isLoading={status === 'loading'}
+            />
           </label>
 
           <button 

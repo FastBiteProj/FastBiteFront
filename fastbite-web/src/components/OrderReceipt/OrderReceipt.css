@@ -1,13 +1,81 @@
 .OrderReceipt {
   background: white;
-  padding: 2.5rem;
-  border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  max-width: 500px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
   margin: 0 auto;
-  color: #1a1a1a;
-  font-family: 'Poppins', sans-serif;
-  animation: fadeIn 0.5s ease-out;
+  font-family: 'Courier New', monospace;
+}
+
+.OrderReceipt h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.OrderReceipt__items {
+  margin-bottom: 25px;
+}
+
+.OrderReceipt__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  padding: 5px 0;
+}
+
+.OrderReceipt__item-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.OrderReceipt__item-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.OrderReceipt__item-quantity {
+  font-size: 14px;
+  color: #666;
+}
+
+.OrderReceipt__item-price {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-left: 20px;
+  min-width: 70px;
+  text-align: right;
+}
+
+.OrderReceipt__divider {
+  height: 2px;
+  background: #333;
+  margin: 20px 0;
+  border: none;
+  border-top: 1px dashed #333;
+}
+
+.OrderReceipt__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: #333;
+  padding-top: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .OrderReceipt__header {
@@ -121,7 +189,6 @@
   }
 }
 
-/* Стилизация для мобильных устройств */
 @media (max-width: 768px) {
   .OrderReceipt {
     padding: 1.5rem;
@@ -137,4 +204,32 @@
     padding: 0.75rem;
     font-size: 0.9rem;
   }
+}
+
+.OrderPage__receipt-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+}
+
+.OrderPage__new-order-button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #face8d;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.OrderPage__new-order-button:hover {
+  background-color: #face8d;
 } 

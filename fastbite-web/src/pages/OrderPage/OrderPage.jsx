@@ -41,16 +41,22 @@ export const OrderPage = () => {
   const [currentPartyId, setCurrentPartyId] = useState(null);
   const [showJoinModal, setShowJoinModal] = useState(false);
   const connectionRef = useRef(null);
+  const [receiptData, setReceiptData] = useState(null);
 
   const order = useSelector((state) => {
     const currentPartyId = localStorage.getItem('currentPartyId');
+    console.log('Current party ID:', currentPartyId); // Для отладки
+    console.log('State products:', state.products.products); // Для отладки
+    console.log('State order:', state.order.order); // Для отладки
+    console.log('State party cart:', state.party.partyCart); // Для отладки
+
     if (currentPartyId) {
       return state.party.partyCart.map(productId => {
         const product = state.products.products.find(p => p.id === productId);
         return product || null;
       }).filter(Boolean);
     }
-    return state.order.order || [];
+    return Array.isArray(state.order.order) ? state.order.order : [];
   });
 
   const partyData = useSelector(selectPartyData);
@@ -284,23 +290,37 @@ export const OrderPage = () => {
 
   const clearCartAfterPayment = async () => {
     try {
-      const clearCartRequest = {
-        request: {
-          userId: user.id
-        }
-      };
+      const currentPartyId = localStorage.getItem('currentPartyId');
+      console.log('Clearing cart after payment. PartyId:', currentPartyId); // Для отладки
 
       if (currentPartyId) {
-        const partyRequest = {
+        // Для групповой корзины
+        await dispatch(clearCartParty({
           request: {
-            userId: user.id,
             partyId: currentPartyId
           }
-        };
-        await dispatch(clearPartyCart(partyRequest)).unwrap();
+        })).unwrap();
+        
+        // Обновляем состояние корзины группы
+        await dispatch(getPartyCart(currentPartyId));
+        
+        // Уведомляем других участников группы
+        if (connectionRef.current?.state === signalR.HubConnectionState.Connected) {
+          await connectionRef.current.invoke("NotifyPartyCartUpdated", currentPartyId);
+        }
       } else {
-        await dispatch(clearCart(clearCartRequest)).unwrap();
+        // Для индивидуальной корзины
+        await dispatch(clearCart({
+          request: {
+            userId: user.id
+          }
+        })).unwrap();
+        
+        // Обновляем состояние индивидуальной корзины
+        await dispatch(fetchCartFromRedis({ userId: user.id }));
       }
+
+      console.log('Cart cleared successfully'); // Для отладки
     } catch (error) {
       console.error("Error clearing cart after payment:", error);
     }
@@ -308,9 +328,30 @@ export const OrderPage = () => {
 
   const handlePaymentSuccess = async () => {
     try {
+      // Сохраняем данные заказа перед очисткой корзины
+      const savedOrder = order.map(dish => ({
+        name: getTranslation(dish).name,
+        price: Number(dish.price),
+        quantity: dish.quantity || 1,
+        id: dish.id
+      }));
+      
+      const savedTotal = totalPrice;
+      
+      // Сохраняем данные для чека
+      setReceiptData({
+        order: savedOrder,
+        totalPrice: savedTotal
+      });
+
+      // Очищаем корзину
       await clearCartAfterPayment();
+      
+      // Обновляем UI
       setPaymentFormVisible(false);
       setShowReceipt(true);
+
+      console.log('Payment processed successfully'); // Для отладки
     } catch (error) {
       console.error("Payment success handling error:", error);
     }
@@ -446,13 +487,16 @@ export const OrderPage = () => {
         {showReceipt ? (
           <div className="OrderPage__receipt-container">
             <OrderReceipt
-              order={order}
-              totalPrice={Number(totalPrice)}
-              language={i18n.language}
+              order={receiptData?.order || []}
+              totalPrice={receiptData?.totalPrice || 0}
             />
             <button
               className="OrderPage__new-order-button"
-              onClick={handleNewOrder}
+              onClick={() => {
+                setShowReceipt(false);
+                setReceiptData(null);
+                handleNewOrder();
+              }}
             >
               {t("order.newOrder")}
             </button>
@@ -574,13 +618,11 @@ export const OrderPage = () => {
               userId: user.id,
               totalPrice: totalPrice,
               tableNumber: isInParty ? partyData?.tableId : parseInt(selectedTable),
-              products: Array.isArray(order)
-                ? order.map((dish) => ({
-                    productId: dish.id,
-                    productName: getTranslation(dish).name,
-                    quantity: 1,
-                  }))
-                : [],
+              products: order.map(dish => ({
+                productId: dish.id,
+                productName: getTranslation(dish).name,
+                quantity: dish.quantity || 1,
+              }))
             }}
           />
         )}

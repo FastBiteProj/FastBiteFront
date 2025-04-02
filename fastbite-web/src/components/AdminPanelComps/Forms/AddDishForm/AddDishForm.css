@@ -117,3 +117,27 @@
   background-color: #ffebee;
   border-radius: 4px;
 }
+
+.tags-label {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.tags-label > span {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+.tags-select {
+  width: 100%;
+  margin-top: 8px;
+}
+
+/* Стили для мобильных устройств */
+@media (max-width: 768px) {
+  .tags-select {
+    width: 100%;
+  }
+}
